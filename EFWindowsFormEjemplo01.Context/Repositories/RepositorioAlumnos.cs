@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using EFWindowsFormEjemplo01.Context.Repositories.Facades;
+using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
 using EFWindowsFormEjemplo01.Entities.Entities;
 
 namespace EFWindowsFormEjemplo01.Context.Repositories
@@ -22,16 +25,38 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
         public Alumno GetAlumnoPorId(int id)
         {
             return _dbContext.Alumnos.SingleOrDefault(a => a.AlumnoId == id);
+
         }
 
         public void Guardar(Alumno alumno)
         {
-            throw new System.NotImplementedException();
+            if (alumno.AlumnoId==0)
+            {
+                _dbContext.Alumnos.Add(alumno);
+            }
+            else
+            {
+                var alumnoInDb = this.GetAlumnoPorId(alumno.AlumnoId);
+                alumnoInDb.Nombre = alumno.Nombre;
+                alumnoInDb.Apellido = alumno.Apellido;
+                _dbContext.Entry(alumnoInDb).State = EntityState.Modified;
+            }
+
+            _dbContext.SaveChanges();
         }
 
-        public void Borrar(Alumno alumno)
+        public void Borrar(int id)
         {
-            throw new System.NotImplementedException();
+            var alumnoInDb = _dbContext.Alumnos.SingleOrDefault(a => a.AlumnoId == id);
+            if (alumnoInDb!=null)
+            {
+                _dbContext.Entry(alumnoInDb).State = EntityState.Deleted;
+                _dbContext.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Alumno inexistente");
+            }
         }
 
         public bool Existe(Alumno alumno)

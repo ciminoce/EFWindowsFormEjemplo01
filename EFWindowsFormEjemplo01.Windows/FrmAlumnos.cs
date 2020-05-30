@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
 using EFWindowsFormEjemplo01.Entities.Entities;
+using EFWindowsFormEjemplo01.Entities.Maps;
 using EFWindowsFormEjemplo01.Service.Services;
 using EFWindowsFormEjemplo01.Service.Services.Facades;
+using MetroFramework;
 
 namespace EFWindowsFormEjemplo01.Windows
 {
-    public partial class FrmAlumnos : Form
+    public partial class FrmAlumnos : MetroFramework.Forms.MetroForm
     {
         private static FrmAlumnos _instancia = null;
 
@@ -54,7 +56,7 @@ namespace EFWindowsFormEjemplo01.Windows
 
         private void MostrarDatosEnGrilla()
         {
-            dgvDatos.Rows.Clear();
+            mgDatos.Rows.Clear();
             foreach (var alumnoDto in lista)
             {
                 DataGridViewRow r = ConstruirFila();
@@ -65,7 +67,7 @@ namespace EFWindowsFormEjemplo01.Windows
 
         private void AgregarFila(DataGridViewRow r)
         {
-            dgvDatos.Rows.Add(r);
+            mgDatos.Rows.Add(r);
         }
 
         private void SetearFila(DataGridViewRow r, AlumnoListDto alumno)
@@ -78,8 +80,72 @@ namespace EFWindowsFormEjemplo01.Windows
         private DataGridViewRow ConstruirFila()
         {
             DataGridViewRow r=new DataGridViewRow();
-            r.CreateCells(dgvDatos);
+            r.CreateCells(mgDatos);
             return r;
+        }
+
+        private void mbtCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void mgDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow r = mgDatos.SelectedRows[0];
+            AlumnoListDto alumnoListDto = (AlumnoListDto) r.Tag;
+            if (e.ColumnIndex==1)
+            {
+                DialogResult dr = MetroMessageBox.Show(this,
+                    $"¿Desea dar de baja al alumno {alumnoListDto.NombreCompleto}?",
+                    "Confirmar Baja",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (dr==DialogResult.Yes)
+                {
+                    try
+                    {
+                        servicio.Borrar(alumnoListDto.AlumnoId);
+                        mgDatos.Rows.Remove(r);
+                        MetroMessageBox.Show(this, "Registro borrado",
+                            "Mensaje",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    }
+                    catch (Exception exception)
+                    {
+                        MetroMessageBox.Show(this, exception.Message,
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                    }
+                }
+            }else if (e.ColumnIndex==2)
+            {
+                AlumnoEditDto alumnoEditDto = servicio.GetAlumnoPorId(alumnoListDto.AlumnoId);
+                FrmAlumnoAE frm=new FrmAlumnoAE();
+                frm.Text = "Editar Alumno";
+                frm.SetAlumno(alumnoEditDto);
+                DialogResult dr = frm.ShowDialog(this);
+                if (dr==DialogResult.OK)
+                {
+                    try
+                    {
+                        alumnoEditDto = frm.GetAlumno();
+                        servicio.Guardar(alumnoEditDto);
+                        alumnoListDto = Mapeador.CrearMapper().Map<AlumnoListDto>(alumnoEditDto);
+                        SetearFila(r,alumnoListDto);
+                        MetroMessageBox.Show(this, "Registro Editado", "Mensaje",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception exception)
+                    {
+                        MetroMessageBox.Show(this, exception.Message, "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        
+                    }
+                }
+            }
         }
     }
 }

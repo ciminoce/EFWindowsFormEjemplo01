@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
 using EFWindowsFormEjemplo01.Entities.Entities;
 
 namespace EFWindowsFormEjemplo01.Context.Repositories.Facades
@@ -8,7 +9,7 @@ namespace EFWindowsFormEjemplo01.Context.Repositories.Facades
         List<Alumno> GetAlumnos();
         Alumno GetAlumnoPorId(int id);
         void Guardar(Alumno alumno);
-        void Borrar(Alumno alumno);
+        void Borrar(int id);
         bool Existe(Alumno alumno);
         bool EstaRelacionado(Alumno alumno);
 

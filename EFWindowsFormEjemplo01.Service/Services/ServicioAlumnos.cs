@@ -35,19 +35,22 @@ namespace EFWindowsFormEjemplo01.Service.Services
             return listaDto;
         }
 
-        public Alumno GetAlumnoPorId(int id)
+        public AlumnoEditDto GetAlumnoPorId(int id)
         {
-            return repositorio.GetAlumnoPorId(id);
+            var alumno= repositorio.GetAlumnoPorId(id);
+            var alumnoEditDto = Mapeador.CrearMapper().Map<AlumnoEditDto>(alumno);
+            return alumnoEditDto;
         }
 
-        public void Guardar(Alumno alumno)
+        public void Guardar(AlumnoEditDto alumnoEditDto)
         {
-            throw new System.NotImplementedException();
+            var alumno = Mapeador.CrearMapper().Map<Alumno>(alumnoEditDto);
+            repositorio.Guardar(alumno);
         }
 
-        public void Borrar(Alumno alumno)
+        public void Borrar(int id)
         {
-            throw new System.NotImplementedException();
+            repositorio.Borrar(id);
         }
 
         public bool Existe(Alumno alumno)

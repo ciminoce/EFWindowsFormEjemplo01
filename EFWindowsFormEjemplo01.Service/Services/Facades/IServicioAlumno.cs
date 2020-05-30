@@ -7,9 +7,9 @@ namespace EFWindowsFormEjemplo01.Service.Services.Facades
     public interface IServicioAlumno
     {
         List<AlumnoListDto> GetAlumnos();
-        Alumno GetAlumnoPorId(int id);
-        void Guardar(Alumno alumno);
-        void Borrar(Alumno alumno);
+        AlumnoEditDto GetAlumnoPorId(int id);
+        void Guardar(AlumnoEditDto alumno);
+        void Borrar(int id);
         bool Existe(Alumno alumno);
         bool EstaRelacionado(Alumno alumno);
 

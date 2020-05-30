@@ -11,6 +11,13 @@ namespace EFWindowsFormEjemplo01.Entities.Maps
             CreateMap<Alumno, AlumnoListDto>()
                 .ForMember(dest => dest.NombreCompleto, act => act.MapFrom(src => $"{src.Nombre} {src.Apellido}"));
 
+            CreateMap<Alumno, AlumnoEditDto>();
+            CreateMap<AlumnoEditDto, Alumno>();
+
+            CreateMap<AlumnoEditDto, AlumnoListDto>()
+                .ForMember(dest => dest.NombreCompleto, act => act.MapFrom(src => $"{src.Nombre} {src.Apellido}"));
+
+
         }
 
     }
