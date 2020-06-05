@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using EFWindowsFormEjemplo01.Context.Repositories.Facades;
-using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
 using EFWindowsFormEjemplo01.Entities.Entities;
 
 namespace EFWindowsFormEjemplo01.Context.Repositories
@@ -36,7 +35,7 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
             }
             else
             {
-                var alumnoInDb = this.GetAlumnoPorId(alumno.AlumnoId);
+                var alumnoInDb = GetAlumnoPorId(alumno.AlumnoId);
                 alumnoInDb.Nombre = alumno.Nombre;
                 alumnoInDb.Apellido = alumno.Apellido;
                 _dbContext.Entry(alumnoInDb).State = EntityState.Modified;
@@ -61,12 +60,22 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
 
         public bool Existe(Alumno alumno)
         {
-            throw new System.NotImplementedException();
+            if (alumno.AlumnoId>0)
+            {
+                //fue editado
+                return _dbContext.Alumnos.Any(a =>
+                    a.Nombre == alumno.Nombre && a.Apellido == alumno.Apellido
+                                              && a.AlumnoId != alumno.AlumnoId);
+            }
+            //fue agregado
+            return _dbContext.Alumnos.Any(a => a.Nombre == alumno.Nombre 
+                                               && a.Apellido == alumno.Apellido);
         }
 
         public bool EstaRelacionado(Alumno alumno)
         {
-            throw new System.NotImplementedException();
+            //TODO:Desarrollar cuando se haya hecho la parte de inscripciones
+            return false;
         }
     }
 }

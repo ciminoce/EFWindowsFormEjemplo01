@@ -10,8 +10,8 @@ namespace EFWindowsFormEjemplo01.Service.Services.Facades
         AlumnoEditDto GetAlumnoPorId(int id);
         void Guardar(AlumnoEditDto alumno);
         void Borrar(int id);
-        bool Existe(Alumno alumno);
-        bool EstaRelacionado(Alumno alumno);
+        bool Existe(AlumnoEditDto alumno);
+        bool EstaRelacionado(AlumnoListDto alumno);
 
     }
 }

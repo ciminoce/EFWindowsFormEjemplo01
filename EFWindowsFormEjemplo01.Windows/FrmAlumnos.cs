@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
 using EFWindowsFormEjemplo01.Entities.Entities;
 using EFWindowsFormEjemplo01.Entities.Maps;
@@ -105,13 +106,17 @@ namespace EFWindowsFormEjemplo01.Windows
                 {
                     try
                     {
-                        servicio.Borrar(alumnoListDto.AlumnoId);
-                        mgDatos.Rows.Remove(r);
-                        MetroMessageBox.Show(this, "Registro borrado",
-                            "Mensaje",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-                    }
+                        if (!servicio.EstaRelacionado(alumnoListDto))
+                        {
+
+                            servicio.Borrar(alumnoListDto.AlumnoId);
+                            mgDatos.Rows.Remove(r);
+                            MetroMessageBox.Show(this, "Registro borrado",
+                                "Mensaje",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+
+                        }                    }
                     catch (Exception exception)
                     {
                         MetroMessageBox.Show(this, exception.Message,
@@ -147,6 +152,35 @@ namespace EFWindowsFormEjemplo01.Windows
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         
                     }
+                }
+            }
+        }
+
+        private void mbtNuevo_Click(object sender, EventArgs e)
+        {
+            FrmAlumnoAE frm=new FrmAlumnoAE();
+            frm.Text = "Nuevo alumno...";
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr==DialogResult.OK)
+            {
+                try
+                {
+                    AlumnoEditVm alumnoEditVm = frm.GetAlumno();
+                    AlumnoEditDto alumnoEditDto = Mapeador.CrearMapper().Map<AlumnoEditDto>(alumnoEditVm);
+
+                    servicio.Guardar(alumnoEditDto);
+                    DataGridViewRow r = ConstruirFila();
+                    AlumnoListDto alumnoListDto = Mapeador.CrearMapper().Map<AlumnoListDto>(alumnoEditDto);
+                    SetearFila(r,alumnoListDto);
+                    AgregarFila(r);
+                    MetroMessageBox.Show(this, "Registro agregado", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception exception)
+                {
+                    MetroMessageBox.Show(this, exception.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
                 }
             }
         }

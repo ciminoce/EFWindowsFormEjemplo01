@@ -53,14 +53,16 @@ namespace EFWindowsFormEjemplo01.Service.Services
             repositorio.Borrar(id);
         }
 
-        public bool Existe(Alumno alumno)
+        public bool Existe(AlumnoEditDto alumnoEditDto)
         {
-            throw new System.NotImplementedException();
+            Alumno alumno = Mapeador.CrearMapper().Map<Alumno>(alumnoEditDto);
+            return repositorio.Existe(alumno);
         }
 
-        public bool EstaRelacionado(Alumno alumno)
+        public bool EstaRelacionado(AlumnoListDto alumnoListDto)
         {
-            throw new System.NotImplementedException();
+            Alumno alumno = Mapeador.CrearMapper().Map<Alumno>(alumnoListDto);
+            return repositorio.EstaRelacionado(alumno);
         }
     }
 }
