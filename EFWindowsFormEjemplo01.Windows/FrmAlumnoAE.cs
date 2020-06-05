@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
+using EFWindowsFormEjemplo01.Entities.ViewModels.Alumno;
 
 namespace EFWindowsFormEjemplo01.Windows
 {
@@ -16,46 +16,42 @@ namespace EFWindowsFormEjemplo01.Windows
             DialogResult = DialogResult.Cancel;
         }
 
-        private AlumnoEditDto alumnoEditDto;
+        private AlumnoEditVm alumnoEditVm;
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if (alumnoEditDto!=null)
+            if (alumnoEditVm!=null)
             {
-                NombreMetroTextBox.Text = alumnoEditDto.Nombre;
-                ApellidoMetroTextBox.Text = alumnoEditDto.Apellido;
+                NombreMetroTextBox.Text = alumnoEditVm.Nombre;
+                ApellidoMetroTextBox.Text = alumnoEditVm.Apellido;
             }
         }
 
-        public void SetAlumno(AlumnoEditDto alumnoEditDto)
+        public void SetAlumno(AlumnoEditVm alumnoEditVm)
         {
-            this.alumnoEditDto = alumnoEditDto;
+            this.alumnoEditVm = alumnoEditVm;
         }
 
         private void GuardarMetroButton_Click(object sender, EventArgs e)
         {
-            if (ValidarDatos())
+            if (alumnoEditVm==null)
             {
-                if (alumnoEditDto==null)
-                {
-                    alumnoEditDto=new AlumnoEditDto();
-                }
+                alumnoEditVm=new AlumnoEditVm();
+            }
 
-                alumnoEditDto.Nombre = NombreMetroTextBox.Text;
-                alumnoEditDto.Apellido = ApellidoMetroTextBox.Text;
+            alumnoEditVm.Nombre = NombreMetroTextBox.Text;
+            alumnoEditVm.Apellido = ApellidoMetroTextBox.Text;
+            bool valido=new Helpers.DataValidator(alumnoEditVm).Validate();
+            if (valido)
+            {
                 DialogResult = DialogResult.OK;
             }
         }
 
-        private bool ValidarDatos()
-        {
-            bool valido = true;
-            return true;
-        }
 
-        public AlumnoEditDto GetAlumno()
+        public AlumnoEditVm GetAlumno()
         {
-            return alumnoEditDto;
+            return alumnoEditVm;
         }
     }
 }

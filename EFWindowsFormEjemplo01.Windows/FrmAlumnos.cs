@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
 using EFWindowsFormEjemplo01.Entities.Entities;
 using EFWindowsFormEjemplo01.Entities.Maps;
+using EFWindowsFormEjemplo01.Entities.ViewModels.Alumno;
 using EFWindowsFormEjemplo01.Service.Services;
 using EFWindowsFormEjemplo01.Service.Services.Facades;
 using MetroFramework;
@@ -125,13 +126,15 @@ namespace EFWindowsFormEjemplo01.Windows
                 AlumnoEditDto alumnoEditDto = servicio.GetAlumnoPorId(alumnoListDto.AlumnoId);
                 FrmAlumnoAE frm=new FrmAlumnoAE();
                 frm.Text = "Editar Alumno";
-                frm.SetAlumno(alumnoEditDto);
+                AlumnoEditVm alumnoEditVm = Mapeador.CrearMapper().Map<AlumnoEditVm>(alumnoEditDto);
+                frm.SetAlumno(alumnoEditVm);
                 DialogResult dr = frm.ShowDialog(this);
                 if (dr==DialogResult.OK)
                 {
                     try
                     {
-                        alumnoEditDto = frm.GetAlumno();
+                        alumnoEditVm = frm.GetAlumno();
+                        alumnoEditDto = Mapeador.CrearMapper().Map<AlumnoEditDto>(alumnoEditVm);
                         servicio.Guardar(alumnoEditDto);
                         alumnoListDto = Mapeador.CrearMapper().Map<AlumnoListDto>(alumnoEditDto);
                         SetearFila(r,alumnoListDto);

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
 using EFWindowsFormEjemplo01.Entities.Entities;
+using EFWindowsFormEjemplo01.Entities.ViewModels.Alumno;
 
 namespace EFWindowsFormEjemplo01.Entities.Maps
 {
@@ -17,6 +18,8 @@ namespace EFWindowsFormEjemplo01.Entities.Maps
             CreateMap<AlumnoEditDto, AlumnoListDto>()
                 .ForMember(dest => dest.NombreCompleto, act => act.MapFrom(src => $"{src.Nombre} {src.Apellido}"));
 
+            CreateMap<AlumnoEditDto, AlumnoEditVm>();
+            CreateMap<AlumnoEditVm, AlumnoEditDto>();
 
         }
 

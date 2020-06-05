@@ -28,41 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.CancelarMetroButton = new MetroFramework.Controls.MetroButton();
-            this.GuardarMetroButton = new MetroFramework.Controls.MetroButton();
             this.ApellidoMetroTextBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.NombreMetroTextBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.CancelarMetroButton = new MetroFramework.Controls.MetroButton();
+            this.GuardarMetroButton = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
-            // 
-            // CancelarMetroButton
-            // 
-            this.CancelarMetroButton.BackColor = System.Drawing.Color.Red;
-            this.CancelarMetroButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.CancelarMetroButton.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.CancelarMetroButton.Location = new System.Drawing.Point(282, 168);
-            this.CancelarMetroButton.Name = "CancelarMetroButton";
-            this.CancelarMetroButton.Size = new System.Drawing.Size(167, 71);
-            this.CancelarMetroButton.TabIndex = 7;
-            this.CancelarMetroButton.Text = "Cancelar";
-            this.CancelarMetroButton.UseCustomBackColor = true;
-            this.CancelarMetroButton.UseSelectable = true;
-            this.CancelarMetroButton.Click += new System.EventHandler(this.CancelarMetroButton_Click);
-            // 
-            // GuardarMetroButton
-            // 
-            this.GuardarMetroButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.GuardarMetroButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.GuardarMetroButton.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.GuardarMetroButton.Location = new System.Drawing.Point(44, 168);
-            this.GuardarMetroButton.Name = "GuardarMetroButton";
-            this.GuardarMetroButton.Size = new System.Drawing.Size(167, 71);
-            this.GuardarMetroButton.TabIndex = 8;
-            this.GuardarMetroButton.Text = "Guardar";
-            this.GuardarMetroButton.UseCustomBackColor = true;
-            this.GuardarMetroButton.UseSelectable = true;
-            this.GuardarMetroButton.Click += new System.EventHandler(this.GuardarMetroButton_Click);
             // 
             // ApellidoMetroTextBox
             // 
@@ -90,7 +62,7 @@
             this.ApellidoMetroTextBox.SelectionStart = 0;
             this.ApellidoMetroTextBox.ShortcutsEnabled = true;
             this.ApellidoMetroTextBox.Size = new System.Drawing.Size(337, 23);
-            this.ApellidoMetroTextBox.TabIndex = 5;
+            this.ApellidoMetroTextBox.TabIndex = 1;
             this.ApellidoMetroTextBox.UseSelectable = true;
             this.ApellidoMetroTextBox.WaterMark = "Ingrese el apellido";
             this.ApellidoMetroTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -131,7 +103,7 @@
             this.NombreMetroTextBox.SelectionStart = 0;
             this.NombreMetroTextBox.ShortcutsEnabled = true;
             this.NombreMetroTextBox.Size = new System.Drawing.Size(337, 23);
-            this.NombreMetroTextBox.TabIndex = 6;
+            this.NombreMetroTextBox.TabIndex = 0;
             this.NombreMetroTextBox.UseSelectable = true;
             this.NombreMetroTextBox.WaterMark = "Ingrese el Nombre";
             this.NombreMetroTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -145,6 +117,38 @@
             this.metroLabel1.Size = new System.Drawing.Size(62, 19);
             this.metroLabel1.TabIndex = 4;
             this.metroLabel1.Text = "Nombre:";
+            // 
+            // CancelarMetroButton
+            // 
+            this.CancelarMetroButton.BackColor = System.Drawing.Color.Red;
+            this.CancelarMetroButton.BackgroundImage = global::EFWindowsFormEjemplo01.Windows.Properties.Resources.cancel_36px;
+            this.CancelarMetroButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.CancelarMetroButton.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.CancelarMetroButton.Location = new System.Drawing.Point(282, 168);
+            this.CancelarMetroButton.Name = "CancelarMetroButton";
+            this.CancelarMetroButton.Size = new System.Drawing.Size(167, 71);
+            this.CancelarMetroButton.TabIndex = 3;
+            this.CancelarMetroButton.Text = "Cancelar";
+            this.CancelarMetroButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.CancelarMetroButton.UseCustomBackColor = true;
+            this.CancelarMetroButton.UseSelectable = true;
+            this.CancelarMetroButton.Click += new System.EventHandler(this.CancelarMetroButton_Click);
+            // 
+            // GuardarMetroButton
+            // 
+            this.GuardarMetroButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.GuardarMetroButton.BackgroundImage = global::EFWindowsFormEjemplo01.Windows.Properties.Resources.save_as_36px;
+            this.GuardarMetroButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.GuardarMetroButton.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.GuardarMetroButton.Location = new System.Drawing.Point(44, 168);
+            this.GuardarMetroButton.Name = "GuardarMetroButton";
+            this.GuardarMetroButton.Size = new System.Drawing.Size(167, 71);
+            this.GuardarMetroButton.TabIndex = 2;
+            this.GuardarMetroButton.Text = "Guardar";
+            this.GuardarMetroButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.GuardarMetroButton.UseCustomBackColor = true;
+            this.GuardarMetroButton.UseSelectable = true;
+            this.GuardarMetroButton.Click += new System.EventHandler(this.GuardarMetroButton_Click);
             // 
             // FrmAlumnoAE
             // 

@@ -63,6 +63,16 @@ namespace EFWindowsFormEjemplo01.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cancel_36px {
+            get {
+                object obj = ResourceManager.GetObject("cancel_36px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_Close_Box_Red_34217 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_Close_Box_Red_34217", resourceCulture);
@@ -146,6 +156,16 @@ namespace EFWindowsFormEjemplo01.Windows.Properties {
         internal static System.Drawing.Bitmap iconfinder_website___pencil_3440848 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_website_-_pencil_3440848", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap save_as_36px {
+            get {
+                object obj = ResourceManager.GetObject("save_as_36px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
