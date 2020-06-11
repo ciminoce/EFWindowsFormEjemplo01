@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using EFWindowsFormEjemplo01.Context.Repositories.Facades;
+using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
 using EFWindowsFormEjemplo01.Entities.Entities;
+using EFWindowsFormEjemplo01.Entities.Maps;
 
 namespace EFWindowsFormEjemplo01.Context.Repositories
 {
@@ -16,26 +18,30 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
             _dbContext=new CursosDbContext();
         }
 
-        public List<Alumno> GetAlumnos()
+        public List<AlumnoListDto> GetAlumnos()
         {
-            return _dbContext.Alumnos.ToList();
+            var listaAlumnos= _dbContext.Alumnos.ToList();
+            var listaDto = Mapeador.CrearMapper().Map<List<Alumno>, List<AlumnoListDto>>(listaAlumnos);
+            return listaDto;
         }
 
-        public Alumno GetAlumnoPorId(int id)
+        public AlumnoEditDto GetAlumnoPorId(int id)
         {
-            return _dbContext.Alumnos.SingleOrDefault(a => a.AlumnoId == id);
+            var alumno= _dbContext.Alumnos.SingleOrDefault(a => a.AlumnoId == id);
+            return Mapeador.CrearMapper().Map<Alumno, AlumnoEditDto>(alumno);
 
         }
 
-        public void Guardar(Alumno alumno)
+        public void Guardar(AlumnoEditDto alumnoEditDto)
         {
+            var alumno = Mapeador.CrearMapper().Map<AlumnoEditDto, Alumno>(alumnoEditDto);
             if (alumno.AlumnoId==0)
             {
                 _dbContext.Alumnos.Add(alumno);
             }
             else
             {
-                var alumnoInDb = GetAlumnoPorId(alumno.AlumnoId);
+                var alumnoInDb = _dbContext.Alumnos.SingleOrDefault(a => a.AlumnoId == alumno.AlumnoId);
                 alumnoInDb.Nombre = alumno.Nombre;
                 alumnoInDb.Apellido = alumno.Apellido;
                 _dbContext.Entry(alumnoInDb).State = EntityState.Modified;
@@ -58,8 +64,10 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
             }
         }
 
-        public bool Existe(Alumno alumno)
+        public bool Existe(AlumnoEditDto alumnoEditDto)
         {
+            var alumno = Mapeador.CrearMapper().Map<AlumnoEditDto, Alumno>(alumnoEditDto);
+
             if (alumno.AlumnoId>0)
             {
                 //fue editado

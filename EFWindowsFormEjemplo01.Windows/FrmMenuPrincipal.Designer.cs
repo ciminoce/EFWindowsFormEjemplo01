@@ -139,6 +139,7 @@
             this.mtProfesores.UseCustomBackColor = true;
             this.mtProfesores.UseSelectable = true;
             this.mtProfesores.UseTileImage = true;
+            this.mtProfesores.Click += new System.EventHandler(this.mtProfesores_Click);
             // 
             // mtSalir
             // 

@@ -6,11 +6,11 @@ namespace EFWindowsFormEjemplo01.Context.Repositories.Facades
 {
     public interface IRepositorioAlumno
     {
-        List<Alumno> GetAlumnos();
-        Alumno GetAlumnoPorId(int id);
-        void Guardar(Alumno alumno);
+        List<AlumnoListDto> GetAlumnos();
+        AlumnoEditDto GetAlumnoPorId(int id);
+        void Guardar(AlumnoEditDto alumno);
         void Borrar(int id);
-        bool Existe(Alumno alumno);
+        bool Existe(AlumnoEditDto alumno);
         bool EstaRelacionado(Alumno alumno);
 
     }

@@ -10,59 +10,45 @@ namespace EFWindowsFormEjemplo01.Service.Services
 {
     public class ServicioAlumnos:IServicioAlumno
     {
-        private readonly IRepositorioAlumno repositorio;
+        private readonly IRepositorioAlumno _repositorio;
 
         public ServicioAlumnos()
         {
-            repositorio=new RepositorioAlumnos();
+            _repositorio=new RepositorioAlumnos();
         }
         public List<AlumnoListDto> GetAlumnos()
         {
-            var listaAlumnos=repositorio.GetAlumnos();
-            //var listaDto=new List<AlumnoListDto>();
-            //foreach (var alumno in listaAlumnos)
-            //{
-            //    var alumnoDto = new AlumnoListDto
-            //    {
-            //        AlumnoId = alumno.AlumnoId,
-            //        NombreCompleto = $"{alumno.Nombre} {alumno.Apellido}"
-            //    };
-            //    listaDto.Add(alumnoDto);
-            //}
-            var listaDto = Mapeador.CrearMapper()
-                .Map<List<Alumno>, List<AlumnoListDto>>(listaAlumnos);
-
-            return listaDto;
+            return _repositorio.GetAlumnos();
         }
 
         public AlumnoEditDto GetAlumnoPorId(int id)
         {
-            var alumno= repositorio.GetAlumnoPorId(id);
+            var alumno= _repositorio.GetAlumnoPorId(id);
             var alumnoEditDto = Mapeador.CrearMapper().Map<AlumnoEditDto>(alumno);
             return alumnoEditDto;
         }
 
         public void Guardar(AlumnoEditDto alumnoEditDto)
         {
-            var alumno = Mapeador.CrearMapper().Map<Alumno>(alumnoEditDto);
-            repositorio.Guardar(alumno);
+            //var alumno = Mapeador.CrearMapper().Map<Alumno>(alumnoEditDto);
+            _repositorio.Guardar(alumnoEditDto);
         }
 
         public void Borrar(int id)
         {
-            repositorio.Borrar(id);
+            _repositorio.Borrar(id);
         }
 
         public bool Existe(AlumnoEditDto alumnoEditDto)
         {
-            Alumno alumno = Mapeador.CrearMapper().Map<Alumno>(alumnoEditDto);
-            return repositorio.Existe(alumno);
+            //Alumno alumno = Mapeador.CrearMapper().Map<Alumno>(alumnoEditDto);
+            return _repositorio.Existe(alumnoEditDto);
         }
 
         public bool EstaRelacionado(AlumnoListDto alumnoListDto)
         {
             Alumno alumno = Mapeador.CrearMapper().Map<Alumno>(alumnoListDto);
-            return repositorio.EstaRelacionado(alumno);
+            return _repositorio.EstaRelacionado(alumno);
         }
     }
 }

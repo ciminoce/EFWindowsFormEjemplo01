@@ -86,6 +86,18 @@
     <Compile Include="FrmMenuPrincipal.Designer.cs">
       <DependentUpon>FrmMenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmProfesorAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProfesorAE.Designer.cs">
+      <DependentUpon>FrmProfesorAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProfesores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProfesores.Designer.cs">
+      <DependentUpon>FrmProfesores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\DataValidator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +109,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenuPrincipal.resx">
       <DependentUpon>FrmMenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProfesorAE.resx">
+      <DependentUpon>FrmProfesorAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProfesores.resx">
+      <DependentUpon>FrmProfesores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

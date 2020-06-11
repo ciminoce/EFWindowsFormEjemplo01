@@ -1,6 +1,6 @@
 ﻿namespace EFWindowsFormEjemplo01.Windows
 {
-    partial class FrmAlumnos
+    partial class FrmProfesores
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.mbtNuevo = new MetroFramework.Controls.MetroButton();
             this.mbtCerrar = new MetroFramework.Controls.MetroButton();
-            this.cmnAlumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnProfesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnBorrar = new System.Windows.Forms.DataGridViewImageColumn();
             this.cmnEditar = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1.SuspendLayout();
@@ -51,8 +51,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(20, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(839, 578);
-            this.panel1.TabIndex = 0;
+            this.panel1.Size = new System.Drawing.Size(778, 596);
+            this.panel1.TabIndex = 2;
             // 
             // mgDatos
             // 
@@ -73,7 +73,7 @@
             this.mgDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.mgDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mgDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cmnAlumno,
+            this.cmnProfesor,
             this.cmnBorrar,
             this.cmnEditar});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -106,7 +106,7 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mgDatos.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.mgDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.mgDatos.Size = new System.Drawing.Size(839, 578);
+            this.mgDatos.Size = new System.Drawing.Size(778, 596);
             this.mgDatos.TabIndex = 0;
             this.mgDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mgDatos_CellContentClick);
             // 
@@ -127,10 +127,10 @@
             this.mbtNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mbtNuevo.BackgroundImage = global::EFWindowsFormEjemplo01.Windows.Properties.Resources.iconfinder_plus_1646001;
             this.mbtNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.mbtNuevo.Location = new System.Drawing.Point(736, 6);
+            this.mbtNuevo.Location = new System.Drawing.Point(661, 13);
             this.mbtNuevo.Name = "mbtNuevo";
             this.mbtNuevo.Size = new System.Drawing.Size(64, 48);
-            this.mbtNuevo.TabIndex = 1;
+            this.mbtNuevo.TabIndex = 3;
             this.mbtNuevo.UseSelectable = true;
             this.mbtNuevo.Click += new System.EventHandler(this.mbtNuevo_Click);
             // 
@@ -139,19 +139,19 @@
             this.mbtCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mbtCerrar.BackgroundImage = global::EFWindowsFormEjemplo01.Windows.Properties.Resources.iconfinder_Close_Box_Red_34217;
             this.mbtCerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.mbtCerrar.Location = new System.Drawing.Point(795, 6);
+            this.mbtCerrar.Location = new System.Drawing.Point(731, 13);
             this.mbtCerrar.Name = "mbtCerrar";
             this.mbtCerrar.Size = new System.Drawing.Size(64, 48);
-            this.mbtCerrar.TabIndex = 1;
+            this.mbtCerrar.TabIndex = 4;
             this.mbtCerrar.UseSelectable = true;
             this.mbtCerrar.Click += new System.EventHandler(this.mbtCerrar_Click);
             // 
-            // cmnAlumno
+            // cmnProfesor
             // 
-            this.cmnAlumno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnAlumno.HeaderText = "Alumno";
-            this.cmnAlumno.Name = "cmnAlumno";
-            this.cmnAlumno.ReadOnly = true;
+            this.cmnProfesor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnProfesor.HeaderText = "Profesor";
+            this.cmnProfesor.Name = "cmnProfesor";
+            this.cmnProfesor.ReadOnly = true;
             // 
             // cmnBorrar
             // 
@@ -167,19 +167,18 @@
             this.cmnEditar.Name = "cmnEditar";
             this.cmnEditar.ReadOnly = true;
             // 
-            // FrmAlumnos
+            // FrmProfesores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(879, 658);
+            this.ClientSize = new System.Drawing.Size(818, 676);
             this.ControlBox = false;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.mbtNuevo);
             this.Controls.Add(this.mbtCerrar);
-            this.Controls.Add(this.panel1);
-            this.MinimumSize = new System.Drawing.Size(686, 583);
-            this.Name = "FrmAlumnos";
-            this.Text = "Alumnos";
-            this.Load += new System.EventHandler(this.FrmAlumnos_Load);
+            this.Name = "FrmProfesores";
+            this.Text = "FrmProfesores";
+            this.Load += new System.EventHandler(this.FrmProfesors_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mgDatos)).EndInit();
             this.ResumeLayout(false);
@@ -189,12 +188,12 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private MetroFramework.Controls.MetroButton mbtCerrar;
-        private MetroFramework.Controls.MetroButton mbtNuevo;
         private MetroFramework.Controls.MetroGrid mgDatos;
+        private MetroFramework.Controls.MetroButton mbtNuevo;
+        private MetroFramework.Controls.MetroButton mbtCerrar;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnAlumno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnProfesor;
         private System.Windows.Forms.DataGridViewImageColumn cmnBorrar;
         private System.Windows.Forms.DataGridViewImageColumn cmnEditar;
     }

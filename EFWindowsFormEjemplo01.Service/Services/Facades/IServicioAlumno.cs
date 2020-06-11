@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
-using EFWindowsFormEjemplo01.Entities.Entities;
 
 namespace EFWindowsFormEjemplo01.Service.Services.Facades
 {
