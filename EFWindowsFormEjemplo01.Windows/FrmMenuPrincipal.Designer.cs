@@ -121,6 +121,7 @@
             this.mtCursos.UseCustomBackColor = true;
             this.mtCursos.UseSelectable = true;
             this.mtCursos.UseTileImage = true;
+            this.mtCursos.Click += new System.EventHandler(this.mtCursos_Click);
             // 
             // mtProfesores
             // 

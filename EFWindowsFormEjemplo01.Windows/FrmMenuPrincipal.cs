@@ -39,5 +39,11 @@ namespace EFWindowsFormEjemplo01.Windows
             FrmProfesores frm=FrmProfesores.GetInstancia();
             frm.ShowDialog(this);
         }
+
+        private void mtCursos_Click(object sender, EventArgs e)
+        {
+            FrmCursos frm=FrmCursos.GetInstancia();
+            frm.ShowDialog(this);
+        }
     }
 }

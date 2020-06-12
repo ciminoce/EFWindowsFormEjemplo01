@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
+using EFWindowsFormEjemplo01.Entities.DTOs.Curso;
 using EFWindowsFormEjemplo01.Entities.DTOs.Profesor;
 using EFWindowsFormEjemplo01.Entities.Entities;
+using EFWindowsFormEjemplo01.Entities.Entities.Emun;
 using EFWindowsFormEjemplo01.Entities.ViewModels.Alumno;
 using EFWindowsFormEjemplo01.Entities.ViewModels.Profesor;
 
@@ -13,6 +15,7 @@ namespace EFWindowsFormEjemplo01.Entities.Maps
         {
             LoadMappingAlumnos();
             LoadMappingProfesores();
+            LoadMappingCursos();
         }
 
         public void LoadMappingAlumnos()
@@ -44,6 +47,23 @@ namespace EFWindowsFormEjemplo01.Entities.Maps
 
             CreateMap<ProfesorEditDto, ProfesorEditVm>();
             CreateMap<ProfesorEditVm, ProfesorEditDto>();
+
+        }
+
+        public void LoadMappingCursos()
+        {
+            CreateMap<Curso, CursoListDto>()
+                .ForMember(dest => dest.Profesor,
+                    act => act.MapFrom(src => $"{src.Profesor.Nombre} {src.Profesor.Apellido}"));
+
+            CreateMap<Curso, CursoMasInfoDto>()
+                .ForMember(dest => dest.Profesor,
+                    act => act.MapFrom(src => $"{src.Profesor.Nombre} {src.Profesor.Apellido}"))
+                .ForMember(dest => dest.Nivel,
+                    act => act.MapFrom(src =>
+                        src.Nivel == Nivel.Principiante ? "Principiante" :
+                        src.Nivel == Nivel.Medio ? "Medio" : "Avanzado"));
+
 
         }
 

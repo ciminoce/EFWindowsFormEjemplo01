@@ -163,6 +163,16 @@ namespace EFWindowsFormEjemplo01.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap information_24px {
+            get {
+                object obj = ResourceManager.GetObject("information_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap save_as_36px {
             get {
                 object obj = ResourceManager.GetObject("save_as_36px", resourceCulture);

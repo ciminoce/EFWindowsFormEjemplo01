@@ -20,7 +20,10 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
 
         public List<ProfesorListDto> GetProfesores()
         {
-            var listaProfesores = _dbContext.Profesores.ToList();
+            var listaProfesores = _dbContext.Profesores
+                .OrderBy(p=>p.Apellido)
+                .ThenBy(p=>p.Nombre)
+                .ToList();
             var listaDto = Mapeador.CrearMapper().Map<List<Profesor>, List<ProfesorListDto>>(listaProfesores);
             return listaDto;
         }
