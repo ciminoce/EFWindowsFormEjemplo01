@@ -64,7 +64,7 @@ namespace EFWindowsFormEjemplo01.Entities.Maps
                         src.Nivel == Nivel.Principiante ? "Principiante" :
                         src.Nivel == Nivel.Medio ? "Medio" : "Avanzado"));
 
-
+            CreateMap<CursoListDto, CursoEditDto>();
         }
 
     }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using EFWindowsFormEjemplo01.Entities.DTOs.Curso;
+using EFWindowsFormEjemplo01.Entities.Maps;
 using EFWindowsFormEjemplo01.Service.Services;
 using EFWindowsFormEjemplo01.Service.Services.Facades;
+using MetroFramework;
 
 namespace EFWindowsFormEjemplo01.Windows
 {
@@ -111,6 +113,40 @@ namespace EFWindowsFormEjemplo01.Windows
                 {
                     Console.WriteLine(exception);
                     throw;
+                }
+            }
+
+            if (e.ColumnIndex==4)
+            {
+                DataGridViewRow r = mgDatos.SelectedRows[0];
+                CursoListDto cursoDto = (CursoListDto) r.Tag;
+                try
+                {
+                    DialogResult dr = MetroMessageBox.Show(this, $"¿Desea dar de baja el curso {cursoDto.Nombre}?",
+                        "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button2);
+                    if (dr==DialogResult.Yes)
+                    {
+                        CursoEditDto cursoEditDto = Mapeador.CrearMapper().Map<CursoListDto, CursoEditDto>(cursoDto);
+                        if (!servicio.EstaRelacionado(cursoEditDto))
+                        {
+                            servicio.Borrar(cursoEditDto.CursoId);
+                            MetroMessageBox.Show(this, "Registro Borrado", "Mensaje",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            mgDatos.Rows.Remove(r);
+                        }
+                        else
+                        {
+                            MetroMessageBox.Show(this, "Curso relacionado",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                catch (Exception exception)
+                {
+                    MetroMessageBox.Show(this, exception.Message,
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 }
             }
         }

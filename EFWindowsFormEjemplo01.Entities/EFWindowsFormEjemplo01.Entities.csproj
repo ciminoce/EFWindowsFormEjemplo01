@@ -52,7 +52,7 @@
     <Compile Include="DTOs\Curso\CursoMasInfoDto.cs" />
     <Compile Include="DTOs\Profesor\ProfesorEditDto.cs" />
     <Compile Include="DTOs\Profesor\ProfesorListDto.cs" />
-    <Compile Include="Entities\Alumno.cs" />
+    <Compile Include="DTOs\Curso\Alumno.cs" />
     <Compile Include="Entities\Curso.cs" />
     <Compile Include="Entities\Emun\Nivel.cs" />
     <Compile Include="Entities\Inscripcion.cs" />

@@ -18,9 +18,18 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
         }
         public List<CursoListDto> GetCursos()
         {
-            var listaCursos = _dbContext.Cursos.Include(c => c.Profesor).ToList();
-            var listaListDto = Mapeador.CrearMapper().Map<List<Curso>, List<CursoListDto>>(listaCursos);
-            return listaListDto;
+            //var listaCursos = _dbContext.Cursos.Include(c => c.Profesor).ToList();
+            //var listaListDto = Mapeador.CrearMapper().Map<List<Curso>, List<CursoListDto>>(listaCursos);
+            //return listaListDto;
+            return  _dbContext.Cursos.Include(c => c.Profesor)
+                .Select(c => new CursoListDto
+                {
+                    CursoId = c.CursoId,
+                    Nombre = c.Nombre,
+                    PrecioTotal = c.PrecioTotal,
+                    Vacantes = c.Vacantes,
+                    Profesor = c.Profesor.Nombre + " " + c.Profesor.Apellido
+                }).ToList();
         }
 
         public CursoMasInfoDto GetMasDatos(int id)
@@ -44,7 +53,12 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
 
         public void Borrar(int id)
         {
-            throw new System.NotImplementedException();
+            var cursoInDb = _dbContext.Cursos.SingleOrDefault(c => c.CursoId == id);
+            if (cursoInDb!=null)
+            {
+                _dbContext.Entry(cursoInDb).State = EntityState.Deleted;
+                _dbContext.SaveChanges();
+            }
         }
 
         public bool Existe(CursoEditDto curso)
@@ -54,7 +68,7 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
 
         public bool EstaRelacionado(CursoEditDto curso)
         {
-            throw new System.NotImplementedException();
+            return false;
         }
     }
 }

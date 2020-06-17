@@ -42,12 +42,16 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
             else
             {
                 var alumnoInDb = _dbContext.Alumnos.SingleOrDefault(a => a.AlumnoId == alumno.AlumnoId);
-                alumnoInDb.Nombre = alumno.Nombre;
-                alumnoInDb.Apellido = alumno.Apellido;
-                _dbContext.Entry(alumnoInDb).State = EntityState.Modified;
+                if (alumnoInDb != null)
+                {
+                    alumnoInDb.Nombre = alumno.Nombre;
+                    alumnoInDb.Apellido = alumno.Apellido;
+                    _dbContext.Entry(alumnoInDb).State = EntityState.Modified;
+                }
             }
 
             _dbContext.SaveChanges();
+            alumnoEditDto.AlumnoId = alumno.AlumnoId;
         }
 
         public void Borrar(int id)

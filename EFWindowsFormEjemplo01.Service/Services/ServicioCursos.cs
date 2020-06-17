@@ -36,7 +36,7 @@ namespace EFWindowsFormEjemplo01.Service.Services
 
         public void Borrar(int id)
         {
-            throw new System.NotImplementedException();
+            _repositorio.Borrar(id);
         }
 
         public bool Existe(CursoEditDto curso)
@@ -46,7 +46,7 @@ namespace EFWindowsFormEjemplo01.Service.Services
 
         public bool EstaRelacionado(CursoEditDto curso)
         {
-            throw new System.NotImplementedException();
+            return _repositorio.EstaRelacionado(curso);
         }
     }
 }
