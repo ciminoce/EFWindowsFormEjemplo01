@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using EFWindowsFormEjemplo01.Entities.DTOs.Profesor;
 using EFWindowsFormEjemplo01.Entities.Maps;
-using EFWindowsFormEjemplo01.Entities.ViewModels.Profesor;
 using EFWindowsFormEjemplo01.Service.Services;
 using EFWindowsFormEjemplo01.Service.Services.Facades;
 using MetroFramework;
@@ -131,15 +130,13 @@ namespace EFWindowsFormEjemplo01.Windows
                 ProfesorEditDto profesorEditDto = servicio.GetProfesorPorId(profesorListDto.ProfesorId);
                 FrmProfesorAE frm = new FrmProfesorAE();
                 frm.Text = "Editar Profesor";
-                ProfesorEditVm profesorEditVm = Mapeador.CrearMapper().Map<ProfesorEditVm>(profesorEditDto);
-                frm.SetProfesor(profesorEditVm);
+                frm.SetProfesor(profesorEditDto);
                 DialogResult dr = frm.ShowDialog(this);
                 if (dr == DialogResult.OK)
                 {
                     try
                     {
-                        profesorEditVm = frm.GetProfesor();
-                        profesorEditDto = Mapeador.CrearMapper().Map<ProfesorEditDto>(profesorEditVm);
+                        profesorEditDto = frm.GetProfesor();
                         servicio.Guardar(profesorEditDto);
                         profesorListDto = Mapeador.CrearMapper().Map<ProfesorListDto>(profesorEditDto);
                         SetearFila(r, profesorListDto);
@@ -165,8 +162,7 @@ namespace EFWindowsFormEjemplo01.Windows
             {
                 try
                 {
-                    ProfesorEditVm profesorEditVm = frm.GetProfesor();
-                    ProfesorEditDto profesorEditDto = Mapeador.CrearMapper().Map<ProfesorEditDto>(profesorEditVm);
+                    ProfesorEditDto profesorEditDto = frm.GetProfesor();
 
                     servicio.Guardar(profesorEditDto);
                     DataGridViewRow r = ConstruirFila();

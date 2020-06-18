@@ -60,13 +60,14 @@
     <Compile Include="Maps\Mapeador.cs" />
     <Compile Include="Maps\MappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Alumno\AlumnoEditVm.cs" />
-    <Compile Include="ViewModels\Curso\CursoEditVm.cs" />
-    <Compile Include="ViewModels\Profesor\ProfesorEditVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\Alumno\" />
+    <Folder Include="ViewModels\Curso\" />
+    <Folder Include="ViewModels\Profesor\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

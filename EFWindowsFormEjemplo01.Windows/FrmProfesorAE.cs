@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using EFWindowsFormEjemplo01.Entities.DTOs.Profesor;
-using EFWindowsFormEjemplo01.Entities.Maps;
-using EFWindowsFormEjemplo01.Entities.ViewModels.Profesor;
 using EFWindowsFormEjemplo01.Service.Services;
 using MetroFramework;
 
@@ -19,35 +17,34 @@ namespace EFWindowsFormEjemplo01.Windows
             DialogResult = DialogResult.Cancel;
         }
         private ServicioProfesores servicio = new ServicioProfesores();
-        private ProfesorEditVm profesorEditVm;
+        private ProfesorEditDto profesorEditDto;
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if (profesorEditVm != null)
+            if (profesorEditDto != null)
             {
-                NombreMetroTextBox.Text = profesorEditVm.Nombre;
-                ApellidoMetroTextBox.Text = profesorEditVm.Apellido;
+                NombreMetroTextBox.Text = profesorEditDto.Nombre;
+                ApellidoMetroTextBox.Text = profesorEditDto.Apellido;
             }
         }
 
-        public void SetProfesor(ProfesorEditVm profesorEditVm)
+        public void SetProfesor(ProfesorEditDto profesorEditDto)
         {
-            this.profesorEditVm = profesorEditVm;
+            this.profesorEditDto = profesorEditDto;
         }
 
         private void GuardarMetroButton_Click(object sender, EventArgs e)
         {
-            if (profesorEditVm == null)
-            {
-                profesorEditVm = new ProfesorEditVm();
-            }
 
-            profesorEditVm.Nombre = NombreMetroTextBox.Text;
-            profesorEditVm.Apellido = ApellidoMetroTextBox.Text;
-            bool valido = new Helpers.DataValidator(profesorEditVm).Validate();
-            if (valido)
+            if (ValidarDatos())
             {
-                ProfesorEditDto profesorEditDto = Mapeador.CrearMapper().Map<ProfesorEditDto>(profesorEditVm);
+                if (profesorEditDto == null)
+                {
+                    profesorEditDto = new ProfesorEditDto();
+                }
+
+                profesorEditDto.Nombre = NombreMetroTextBox.Text;
+                profesorEditDto.Apellido = ApellidoMetroTextBox.Text;
                 if (!servicio.Existe(profesorEditDto))
                 {
                     DialogResult = DialogResult.OK;
@@ -58,17 +55,34 @@ namespace EFWindowsFormEjemplo01.Windows
                     MetroMessageBox.Show(this, "Profesor repetido", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
+
             }
-            else
+
+        }
+        private bool ValidarDatos()
+        {
+            bool valido = true;
+            errorProvider1.Clear();
+            if (string.IsNullOrEmpty(NombreMetroTextBox.Text.Trim())
+                && string.IsNullOrWhiteSpace(NombreMetroTextBox.Text.Trim()))
             {
-                NombreMetroTextBox.Focus();
+                valido = false;
+                errorProvider1.SetError(NombreMetroTextBox, "El nombre es requerido");
             }
+            if (string.IsNullOrEmpty(ApellidoMetroTextBox.Text.Trim())
+                && string.IsNullOrWhiteSpace(ApellidoMetroTextBox.Text.Trim()))
+            {
+                valido = false;
+                errorProvider1.SetError(ApellidoMetroTextBox, "El apellido es requerido");
+            }
+
+            return valido;
         }
 
 
-        public ProfesorEditVm GetProfesor()
+        public ProfesorEditDto GetProfesor()
         {
-            return profesorEditVm;
+            return profesorEditDto;
         }
 
     }

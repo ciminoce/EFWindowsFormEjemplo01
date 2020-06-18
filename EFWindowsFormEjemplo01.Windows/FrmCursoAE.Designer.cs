@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.DescripcionMetroTextBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.vacantesMetroTextBox = new MetroFramework.Controls.MetroTextBox();
@@ -39,13 +40,15 @@
             this.NombreMetroTextBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.principianteMetroRadioButton = new MetroFramework.Controls.MetroRadioButton();
-            this.medioMetroRadioButton = new MetroFramework.Controls.MetroRadioButton();
             this.avanzadoMetroRadioButton = new MetroFramework.Controls.MetroRadioButton();
+            this.medioMetroRadioButton = new MetroFramework.Controls.MetroRadioButton();
+            this.principianteMetroRadioButton = new MetroFramework.Controls.MetroRadioButton();
             this.profesorMetroComboBox = new MetroFramework.Controls.MetroComboBox();
             this.CancelarMetroButton = new MetroFramework.Controls.MetroButton();
             this.GuardarMetroButton = new MetroFramework.Controls.MetroButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // DescripcionMetroTextBox
@@ -250,16 +253,15 @@
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             // 
-            // principianteMetroRadioButton
+            // avanzadoMetroRadioButton
             // 
-            this.principianteMetroRadioButton.AutoSize = true;
-            this.principianteMetroRadioButton.Checked = true;
-            this.principianteMetroRadioButton.Location = new System.Drawing.Point(16, 20);
-            this.principianteMetroRadioButton.Name = "principianteMetroRadioButton";
-            this.principianteMetroRadioButton.Size = new System.Drawing.Size(86, 15);
-            this.principianteMetroRadioButton.TabIndex = 0;
-            this.principianteMetroRadioButton.Text = "Principiante";
-            this.principianteMetroRadioButton.UseSelectable = true;
+            this.avanzadoMetroRadioButton.AutoSize = true;
+            this.avanzadoMetroRadioButton.Location = new System.Drawing.Point(16, 62);
+            this.avanzadoMetroRadioButton.Name = "avanzadoMetroRadioButton";
+            this.avanzadoMetroRadioButton.Size = new System.Drawing.Size(75, 15);
+            this.avanzadoMetroRadioButton.TabIndex = 0;
+            this.avanzadoMetroRadioButton.Text = "Avanzado";
+            this.avanzadoMetroRadioButton.UseSelectable = true;
             // 
             // medioMetroRadioButton
             // 
@@ -271,15 +273,17 @@
             this.medioMetroRadioButton.Text = "Medio";
             this.medioMetroRadioButton.UseSelectable = true;
             // 
-            // avanzadoMetroRadioButton
+            // principianteMetroRadioButton
             // 
-            this.avanzadoMetroRadioButton.AutoSize = true;
-            this.avanzadoMetroRadioButton.Location = new System.Drawing.Point(16, 62);
-            this.avanzadoMetroRadioButton.Name = "avanzadoMetroRadioButton";
-            this.avanzadoMetroRadioButton.Size = new System.Drawing.Size(75, 15);
-            this.avanzadoMetroRadioButton.TabIndex = 0;
-            this.avanzadoMetroRadioButton.Text = "Avanzado";
-            this.avanzadoMetroRadioButton.UseSelectable = true;
+            this.principianteMetroRadioButton.AutoSize = true;
+            this.principianteMetroRadioButton.Checked = true;
+            this.principianteMetroRadioButton.Location = new System.Drawing.Point(16, 20);
+            this.principianteMetroRadioButton.Name = "principianteMetroRadioButton";
+            this.principianteMetroRadioButton.Size = new System.Drawing.Size(86, 15);
+            this.principianteMetroRadioButton.TabIndex = 0;
+            this.principianteMetroRadioButton.TabStop = true;
+            this.principianteMetroRadioButton.Text = "Principiante";
+            this.principianteMetroRadioButton.UseSelectable = true;
             // 
             // profesorMetroComboBox
             // 
@@ -323,6 +327,10 @@
             this.GuardarMetroButton.UseSelectable = true;
             this.GuardarMetroButton.Click += new System.EventHandler(this.GuardarMetroButton_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // FrmCursoAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,6 +355,7 @@
             this.Text = "FrmCursoAE";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -371,5 +380,6 @@
         private MetroFramework.Controls.MetroComboBox profesorMetroComboBox;
         private MetroFramework.Controls.MetroButton CancelarMetroButton;
         private MetroFramework.Controls.MetroButton GuardarMetroButton;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

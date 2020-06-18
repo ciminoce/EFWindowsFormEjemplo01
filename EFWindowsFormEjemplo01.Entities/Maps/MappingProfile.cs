@@ -4,8 +4,6 @@ using EFWindowsFormEjemplo01.Entities.DTOs.Curso;
 using EFWindowsFormEjemplo01.Entities.DTOs.Profesor;
 using EFWindowsFormEjemplo01.Entities.Entities;
 using EFWindowsFormEjemplo01.Entities.Entities.Emun;
-using EFWindowsFormEjemplo01.Entities.ViewModels.Alumno;
-using EFWindowsFormEjemplo01.Entities.ViewModels.Profesor;
 
 namespace EFWindowsFormEjemplo01.Entities.Maps
 {
@@ -29,8 +27,6 @@ namespace EFWindowsFormEjemplo01.Entities.Maps
             CreateMap<AlumnoEditDto, AlumnoListDto>()
                 .ForMember(dest => dest.NombreCompleto, act => act.MapFrom(src => $"{src.Nombre} {src.Apellido}"));
 
-            CreateMap<AlumnoEditDto, AlumnoEditVm>();
-            CreateMap<AlumnoEditVm, AlumnoEditDto>();
 
         }
 
@@ -45,8 +41,6 @@ namespace EFWindowsFormEjemplo01.Entities.Maps
             CreateMap<ProfesorEditDto, ProfesorListDto>()
                 .ForMember(dest => dest.NombreCompleto, act => act.MapFrom(src => $"{src.Nombre} {src.Apellido}"));
 
-            CreateMap<ProfesorEditDto, ProfesorEditVm>();
-            CreateMap<ProfesorEditVm, ProfesorEditDto>();
 
         }
 

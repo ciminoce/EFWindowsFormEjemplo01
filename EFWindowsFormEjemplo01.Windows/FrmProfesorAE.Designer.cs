@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ApellidoMetroTextBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.NombreMetroTextBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.CancelarMetroButton = new MetroFramework.Controls.MetroButton();
             this.GuardarMetroButton = new MetroFramework.Controls.MetroButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // ApellidoMetroTextBox
@@ -150,6 +153,10 @@
             this.GuardarMetroButton.UseSelectable = true;
             this.GuardarMetroButton.Click += new System.EventHandler(this.GuardarMetroButton_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // FrmProfesorAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -163,6 +170,7 @@
             this.Controls.Add(this.metroLabel1);
             this.Name = "FrmProfesorAE";
             this.Text = "FrmProfesorAE";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,5 +184,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroTextBox NombreMetroTextBox;
         private MetroFramework.Controls.MetroLabel metroLabel1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
