@@ -62,9 +62,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Facades\IRepositorioAlumno.cs" />
     <Compile Include="Repositories\Facades\IRepositorioCurso.cs" />
+    <Compile Include="Repositories\Facades\IRepositorioInscripcion.cs" />
     <Compile Include="Repositories\Facades\IRepositorioProfesor.cs" />
     <Compile Include="Repositories\RepositorioAlumnos.cs" />
     <Compile Include="Repositories\RepositorioCursos.cs" />
+    <Compile Include="Repositories\RepositorioInscripciones.cs" />
     <Compile Include="Repositories\RepositorioProfesores.cs" />
   </ItemGroup>
   <ItemGroup>

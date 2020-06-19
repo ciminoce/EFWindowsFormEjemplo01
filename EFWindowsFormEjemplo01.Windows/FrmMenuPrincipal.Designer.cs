@@ -178,6 +178,7 @@
             this.mtInscripciones.UseCustomBackColor = true;
             this.mtInscripciones.UseSelectable = true;
             this.mtInscripciones.UseTileImage = true;
+            this.mtInscripciones.Click += new System.EventHandler(this.mtInscripciones_Click);
             // 
             // mtAlumnos
             // 

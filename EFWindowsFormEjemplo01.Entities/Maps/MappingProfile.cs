@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
 using EFWindowsFormEjemplo01.Entities.DTOs.Curso;
+using EFWindowsFormEjemplo01.Entities.DTOs.Inscripcion;
 using EFWindowsFormEjemplo01.Entities.DTOs.Profesor;
 using EFWindowsFormEjemplo01.Entities.Entities;
 using EFWindowsFormEjemplo01.Entities.Entities.Emun;
@@ -14,6 +15,7 @@ namespace EFWindowsFormEjemplo01.Entities.Maps
             LoadMappingAlumnos();
             LoadMappingProfesores();
             LoadMappingCursos();
+            LoadMappingInscripciones();
         }
 
         public void LoadMappingAlumnos()
@@ -64,5 +66,21 @@ namespace EFWindowsFormEjemplo01.Entities.Maps
                 .ForMember(dest => dest.ProfesorId, act => act.MapFrom(src => src.ProfesorListDto.ProfesorId));
         }
 
+        public void LoadMappingInscripciones()
+        {
+            CreateMap<Inscripcion, InscripcionListDto>()
+                .ForMember(dest => dest.CursoListDto, act => act.MapFrom(src => src.Curso))
+                .ForMember(dest => dest.AlumnoListDto, act => act.MapFrom(src => src.Alumno));
+
+            CreateMap<Inscripcion, InscripcionEditDto>()
+                .ForMember(dest => dest.CursoListDto, act => act.MapFrom(src => src.Curso))
+                .ForMember(dest => dest.AlumnoListDto, act => act.MapFrom(src => src.Alumno));
+
+            CreateMap<InscripcionEditDto, Inscripcion>()
+                .ForMember(dest => dest.CursoId, act => act.MapFrom(src => src.CursoListDto.CursoId))
+                .ForMember(dest => dest.AlumnoId, act => act.MapFrom(src => src.AlumnoListDto.AlumnoId));
+
+            CreateMap<InscripcionEditDto, InscripcionListDto>();
+        }
     }
 }

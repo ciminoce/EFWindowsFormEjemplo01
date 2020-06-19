@@ -47,9 +47,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Facades\IServicioAlumno.cs" />
     <Compile Include="Services\Facades\IServicioCurso.cs" />
+    <Compile Include="Services\Facades\IServicioInscripcion.cs" />
     <Compile Include="Services\Facades\IServicioProfesor.cs" />
     <Compile Include="Services\ServicioAlumnos.cs" />
     <Compile Include="Services\ServicioCursos.cs" />
+    <Compile Include="Services\ServicioInscripciones.cs" />
     <Compile Include="Services\ServicioProfesores.cs" />
   </ItemGroup>
   <ItemGroup>

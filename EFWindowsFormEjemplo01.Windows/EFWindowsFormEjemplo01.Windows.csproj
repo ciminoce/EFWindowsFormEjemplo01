@@ -98,6 +98,18 @@
     <Compile Include="FrmInfoCurso.Designer.cs">
       <DependentUpon>FrmInfoCurso.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmInscripcionAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInscripcionAE.Designer.cs">
+      <DependentUpon>FrmInscripcionAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmInscripciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInscripciones.Designer.cs">
+      <DependentUpon>FrmInscripciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +145,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmInfoCurso.resx">
       <DependentUpon>FrmInfoCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmInscripcionAE.resx">
+      <DependentUpon>FrmInscripcionAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmInscripciones.resx">
+      <DependentUpon>FrmInscripciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenuPrincipal.resx">
       <DependentUpon>FrmMenuPrincipal.cs</DependentUpon>
