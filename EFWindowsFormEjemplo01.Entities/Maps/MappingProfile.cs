@@ -46,9 +46,7 @@ namespace EFWindowsFormEjemplo01.Entities.Maps
 
         public void LoadMappingCursos()
         {
-            CreateMap<Curso, CursoListDto>()
-                .ForMember(dest => dest.Profesor,
-                    act => act.MapFrom(src => $"{src.Profesor.Nombre} {src.Profesor.Apellido}"));
+            CreateMap<Curso, CursoListDto>();
 
             CreateMap<Curso, CursoMasInfoDto>()
                 .ForMember(dest => dest.Profesor,

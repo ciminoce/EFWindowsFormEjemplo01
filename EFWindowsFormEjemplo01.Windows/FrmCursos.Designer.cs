@@ -34,14 +34,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.mgDatos = new MetroFramework.Controls.MetroGrid();
-            this.cmnCurso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnProfesor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.mbtNuevo = new MetroFramework.Controls.MetroButton();
             this.mbtCerrar = new MetroFramework.Controls.MetroButton();
+            this.cmnCurso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnCosto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnInfo = new System.Windows.Forms.DataGridViewImageColumn();
             this.cmnBorrar = new System.Windows.Forms.DataGridViewImageColumn();
             this.cmnEditar = new System.Windows.Forms.DataGridViewImageColumn();
@@ -78,8 +77,7 @@
             this.mgDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mgDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cmnCurso,
-            this.cmnPrecio,
-            this.cmnProfesor,
+            this.cmnCosto,
             this.cmnInfo,
             this.cmnBorrar,
             this.cmnEditar});
@@ -116,26 +114,6 @@
             this.mgDatos.Size = new System.Drawing.Size(1153, 667);
             this.mgDatos.TabIndex = 0;
             this.mgDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mgDatos_CellContentClick);
-            // 
-            // cmnCurso
-            // 
-            this.cmnCurso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnCurso.HeaderText = "Curso";
-            this.cmnCurso.Name = "cmnCurso";
-            this.cmnCurso.ReadOnly = true;
-            // 
-            // cmnPrecio
-            // 
-            this.cmnPrecio.HeaderText = "Precio";
-            this.cmnPrecio.Name = "cmnPrecio";
-            this.cmnPrecio.ReadOnly = true;
-            // 
-            // cmnProfesor
-            // 
-            this.cmnProfesor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnProfesor.HeaderText = "Profesor";
-            this.cmnProfesor.Name = "cmnProfesor";
-            this.cmnProfesor.ReadOnly = true;
             // 
             // dataGridViewImageColumn1
             // 
@@ -182,6 +160,19 @@
             this.mbtCerrar.UseSelectable = true;
             this.mbtCerrar.Click += new System.EventHandler(this.mbtCerrar_Click);
             // 
+            // cmnCurso
+            // 
+            this.cmnCurso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnCurso.HeaderText = "Curso";
+            this.cmnCurso.Name = "cmnCurso";
+            this.cmnCurso.ReadOnly = true;
+            // 
+            // cmnCosto
+            // 
+            this.cmnCosto.HeaderText = "Costo";
+            this.cmnCosto.Name = "cmnCosto";
+            this.cmnCosto.ReadOnly = true;
+            // 
             // cmnInfo
             // 
             this.cmnInfo.HeaderText = "Info";
@@ -227,14 +218,13 @@
         private MetroFramework.Controls.MetroButton mbtCerrar;
         private System.Windows.Forms.Panel panel1;
         private MetroFramework.Controls.MetroGrid mgDatos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnCurso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnPrecio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnProfesor;
-        private System.Windows.Forms.DataGridViewImageColumn cmnInfo;
-        private System.Windows.Forms.DataGridViewImageColumn cmnBorrar;
-        private System.Windows.Forms.DataGridViewImageColumn cmnEditar;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnCurso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnCosto;
+        private System.Windows.Forms.DataGridViewImageColumn cmnInfo;
+        private System.Windows.Forms.DataGridViewImageColumn cmnBorrar;
+        private System.Windows.Forms.DataGridViewImageColumn cmnEditar;
     }
 }

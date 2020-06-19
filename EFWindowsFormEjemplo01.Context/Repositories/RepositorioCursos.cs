@@ -21,14 +21,13 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
             //var listaCursos = _dbContext.Cursos.Include(c => c.Profesor).ToList();
             //var listaListDto = Mapeador.CrearMapper().Map<List<Curso>, List<CursoListDto>>(listaCursos);
             //return listaListDto;
-            return  _dbContext.Cursos.Include(c => c.Profesor)
+            return  _dbContext.Cursos
                 .Select(c => new CursoListDto
                 {
                     CursoId = c.CursoId,
                     Nombre = c.Nombre,
                     PrecioTotal = c.PrecioTotal,
                     Vacantes = c.Vacantes,
-                    Profesor = c.Profesor.Nombre + " " + c.Profesor.Apellido
                 }).ToList();
         }
 

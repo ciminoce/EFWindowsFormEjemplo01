@@ -76,8 +76,7 @@ namespace EFWindowsFormEjemplo01.Windows
         private void SetearFila(DataGridViewRow r, CursoListDto cursoDto)
         {
             r.Cells[cmnCurso.Index].Value = cursoDto.Nombre;
-            r.Cells[cmnPrecio.Index].Value = cursoDto.PrecioTotal.ToString("C");
-            r.Cells[cmnProfesor.Index].Value = cursoDto.Profesor;
+            r.Cells[cmnCosto.Index].Value = cursoDto.PrecioTotal.ToString("C");
 
             if (cursoDto.Vacantes==0)
             {
@@ -96,7 +95,7 @@ namespace EFWindowsFormEjemplo01.Windows
 
         private void mgDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex==3)
+            if (e.ColumnIndex==2)
             {
                 //Ver info del curso
                 DataGridViewRow r = mgDatos.SelectedRows[0];
@@ -116,7 +115,7 @@ namespace EFWindowsFormEjemplo01.Windows
                 }
             }
 
-            if (e.ColumnIndex==4)
+            if (e.ColumnIndex==3)
             {
                 DataGridViewRow r = mgDatos.SelectedRows[0];
                 CursoListDto cursoDto = (CursoListDto) r.Tag;
