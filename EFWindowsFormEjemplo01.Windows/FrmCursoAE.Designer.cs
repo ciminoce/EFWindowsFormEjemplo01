@@ -80,7 +80,7 @@
             this.DescripcionMetroTextBox.SelectionStart = 0;
             this.DescripcionMetroTextBox.ShortcutsEnabled = true;
             this.DescripcionMetroTextBox.Size = new System.Drawing.Size(634, 54);
-            this.DescripcionMetroTextBox.TabIndex = 16;
+            this.DescripcionMetroTextBox.TabIndex = 1;
             this.DescripcionMetroTextBox.UseSelectable = true;
             this.DescripcionMetroTextBox.WaterMark = "Ingrese la Descripción";
             this.DescripcionMetroTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -123,7 +123,7 @@
             this.vacantesMetroTextBox.SelectionStart = 0;
             this.vacantesMetroTextBox.ShortcutsEnabled = true;
             this.vacantesMetroTextBox.Size = new System.Drawing.Size(115, 23);
-            this.vacantesMetroTextBox.TabIndex = 11;
+            this.vacantesMetroTextBox.TabIndex = 3;
             this.vacantesMetroTextBox.UseSelectable = true;
             this.vacantesMetroTextBox.WaterMark = "Ingrese las vacantes";
             this.vacantesMetroTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -175,7 +175,7 @@
             this.precioMetroTextBox.SelectionStart = 0;
             this.precioMetroTextBox.ShortcutsEnabled = true;
             this.precioMetroTextBox.Size = new System.Drawing.Size(115, 23);
-            this.precioMetroTextBox.TabIndex = 13;
+            this.precioMetroTextBox.TabIndex = 2;
             this.precioMetroTextBox.UseSelectable = true;
             this.precioMetroTextBox.WaterMark = "Ingrese el Precio";
             this.precioMetroTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -227,7 +227,7 @@
             this.NombreMetroTextBox.SelectionStart = 0;
             this.NombreMetroTextBox.ShortcutsEnabled = true;
             this.NombreMetroTextBox.Size = new System.Drawing.Size(634, 23);
-            this.NombreMetroTextBox.TabIndex = 15;
+            this.NombreMetroTextBox.TabIndex = 0;
             this.NombreMetroTextBox.UseSelectable = true;
             this.NombreMetroTextBox.WaterMark = "Ingrese el Nombre";
             this.NombreMetroTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -250,7 +250,7 @@
             this.groupBox1.Location = new System.Drawing.Point(119, 259);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(254, 99);
-            this.groupBox1.TabIndex = 23;
+            this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
             // avanzadoMetroRadioButton
@@ -292,7 +292,7 @@
             this.profesorMetroComboBox.Location = new System.Drawing.Point(119, 373);
             this.profesorMetroComboBox.Name = "profesorMetroComboBox";
             this.profesorMetroComboBox.Size = new System.Drawing.Size(634, 29);
-            this.profesorMetroComboBox.TabIndex = 24;
+            this.profesorMetroComboBox.TabIndex = 5;
             this.profesorMetroComboBox.UseSelectable = true;
             // 
             // CancelarMetroButton
@@ -304,7 +304,7 @@
             this.CancelarMetroButton.Location = new System.Drawing.Point(444, 453);
             this.CancelarMetroButton.Name = "CancelarMetroButton";
             this.CancelarMetroButton.Size = new System.Drawing.Size(167, 71);
-            this.CancelarMetroButton.TabIndex = 26;
+            this.CancelarMetroButton.TabIndex = 7;
             this.CancelarMetroButton.Text = "Cancelar";
             this.CancelarMetroButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.CancelarMetroButton.UseCustomBackColor = true;
@@ -320,7 +320,7 @@
             this.GuardarMetroButton.Location = new System.Drawing.Point(206, 453);
             this.GuardarMetroButton.Name = "GuardarMetroButton";
             this.GuardarMetroButton.Size = new System.Drawing.Size(167, 71);
-            this.GuardarMetroButton.TabIndex = 25;
+            this.GuardarMetroButton.TabIndex = 6;
             this.GuardarMetroButton.Text = "Guardar";
             this.GuardarMetroButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.GuardarMetroButton.UseCustomBackColor = true;

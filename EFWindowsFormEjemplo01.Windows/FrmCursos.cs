@@ -113,9 +113,7 @@ namespace EFWindowsFormEjemplo01.Windows
                     Console.WriteLine(exception);
                     throw;
                 }
-            }
-
-            if (e.ColumnIndex==3)
+            }else if (e.ColumnIndex==3)
             {
                 DataGridViewRow r = mgDatos.SelectedRows[0];
                 CursoListDto cursoDto = (CursoListDto) r.Tag;
@@ -147,7 +145,35 @@ namespace EFWindowsFormEjemplo01.Windows
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+            } else if (e.ColumnIndex==4)
+            {
+                DataGridViewRow r = mgDatos.SelectedRows[0];
+                CursoListDto cursoDto = (CursoListDto)r.Tag;
+                CursoEditDto cursoEdit = servicio.GetCursoPorId(cursoDto.CursoId);
+                FrmCursoAE frm=new FrmCursoAE();
+                frm.SetCurso(cursoEdit);
+                DialogResult dr = frm.ShowDialog(this);
+                if (dr==DialogResult.OK)
+                {
+                    try
+                    {
+                        cursoEdit = frm.GetCurso();
+                        servicio.Guardar(cursoEdit);
+                        cursoDto = Mapeador.CrearMapper().Map<CursoEditDto, CursoListDto>(cursoEdit);
+                        SetearFila(r,cursoDto);
+                        MetroMessageBox.Show(this, "Registro Editado", "Mensaje",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception exception)
+                    {
+                        MetroMessageBox.Show(this, exception.Message, "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+
             }
+
         }
 
         private void mbtNuevo_Click(object sender, EventArgs e)
@@ -155,7 +181,28 @@ namespace EFWindowsFormEjemplo01.Windows
             FrmCursoAE frm=new FrmCursoAE();
             frm.Text = "Nuevo Curso...";
             DialogResult dr = frm.ShowDialog(this);
-            //TODO:Completar el alta de un nuevo curso.
+            if (dr==DialogResult.OK)
+            {
+                try
+                {
+                    CursoEditDto cursoEditDto = frm.GetCurso();
+                    servicio.Guardar(cursoEditDto);
+                    CursoListDto cursoListDto = Mapeador.CrearMapper()
+                        .Map<CursoEditDto, CursoListDto>(cursoEditDto);
+                    DataGridViewRow r = ConstruirFila();
+                    SetearFila(r,cursoListDto);
+                    AgregarFila(r);
+                    MetroMessageBox.Show(this, "Registro Agregado", "Mensaje", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                catch (Exception exception)
+                {
+                    MetroMessageBox.Show(this, exception.Message, "Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                }
+            }
+            
         }
     }
 }

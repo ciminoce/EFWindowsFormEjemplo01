@@ -26,12 +26,12 @@ namespace EFWindowsFormEjemplo01.Service.Services
 
         public CursoEditDto GetCursoPorId(int id)
         {
-            throw new System.NotImplementedException();
+            return _repositorio.GetCursoPorId(id);
         }
 
-        public void Guardar(CursoEditDto curso)
+        public void Guardar(CursoEditDto cursoDto)
         {
-            throw new System.NotImplementedException();
+            _repositorio.Guardar(cursoDto);
         }
 
         public void Borrar(int id)
@@ -41,7 +41,7 @@ namespace EFWindowsFormEjemplo01.Service.Services
 
         public bool Existe(CursoEditDto curso)
         {
-            throw new System.NotImplementedException();
+            return _repositorio.Existe(curso);
         }
 
         public bool EstaRelacionado(CursoEditDto curso)

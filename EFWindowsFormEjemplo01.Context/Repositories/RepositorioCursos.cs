@@ -42,12 +42,33 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
 
         public CursoEditDto GetCursoPorId(int id)
         {
-            throw new System.NotImplementedException();
+            var curso = _dbContext.Cursos.Include(c => c.Profesor).SingleOrDefault(c => c.CursoId == id);
+            return Mapeador.CrearMapper().Map<Curso, CursoEditDto>(curso);
         }
 
-        public void Guardar(CursoEditDto curso)
+        public void Guardar(CursoEditDto cursoDto)
         {
-            throw new System.NotImplementedException();
+            var curso = Mapeador.CrearMapper().Map<CursoEditDto, Curso>(cursoDto);
+            if (curso.CursoId==0)
+            {
+                _dbContext.Cursos.Add(curso);
+            }
+            else
+            {
+                var cursoInDb = _dbContext.Cursos.SingleOrDefault(c => c.CursoId == curso.CursoId);
+                if (cursoInDb != null)
+                {
+                    cursoInDb.Nombre = curso.Nombre;
+                    cursoInDb.Descripcion = curso.Descripcion;
+                    cursoInDb.Vacantes = curso.Vacantes;
+                    cursoInDb.PrecioTotal = curso.PrecioTotal;
+                    cursoInDb.ProfesorId = curso.ProfesorId;
+                    cursoInDb.Nivel = curso.Nivel;
+                    _dbContext.Entry(cursoInDb).State = EntityState.Modified;
+                }
+            }
+
+            _dbContext.SaveChanges();
         }
 
         public void Borrar(int id)
@@ -62,7 +83,12 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
 
         public bool Existe(CursoEditDto curso)
         {
-            throw new System.NotImplementedException();
+            if (curso.CursoId==0)
+            {
+                return _dbContext.Cursos.Any(c => c.Nombre == curso.Nombre);
+            }
+
+            return _dbContext.Cursos.Any(c => c.Nombre == curso.Nombre && c.CursoId != curso.CursoId);
         }
 
         public bool EstaRelacionado(CursoEditDto curso)

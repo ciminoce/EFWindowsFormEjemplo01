@@ -56,7 +56,12 @@ namespace EFWindowsFormEjemplo01.Entities.Maps
                         src.Nivel == Nivel.Principiante ? "Principiante" :
                         src.Nivel == Nivel.Medio ? "Medio" : "Avanzado"));
 
-            CreateMap<CursoListDto, CursoEditDto>();
+            CreateMap<CursoEditDto, CursoListDto>();
+
+            CreateMap<Curso, CursoEditDto>()
+                .ForMember(dest=>dest.ProfesorListDto, act=>act.MapFrom(src=>src.Profesor));
+            CreateMap<CursoEditDto, Curso>()
+                .ForMember(dest => dest.ProfesorId, act => act.MapFrom(src => src.ProfesorListDto.ProfesorId));
         }
 
     }

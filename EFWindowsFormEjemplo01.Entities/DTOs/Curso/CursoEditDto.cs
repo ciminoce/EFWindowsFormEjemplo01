@@ -1,4 +1,5 @@
-﻿using EFWindowsFormEjemplo01.Entities.Entities.Emun;
+﻿using EFWindowsFormEjemplo01.Entities.DTOs.Profesor;
+using EFWindowsFormEjemplo01.Entities.Entities.Emun;
 
 namespace EFWindowsFormEjemplo01.Entities.DTOs.Curso
 {
@@ -10,7 +11,7 @@ namespace EFWindowsFormEjemplo01.Entities.DTOs.Curso
         public decimal PrecioTotal { get; set; }
         public Nivel Nivel { get; set; }
         public int Vacantes { get; set; }
-        public int ProfesorId { get; set; }
+        public ProfesorListDto ProfesorListDto { get; set; }
 
     }
 }

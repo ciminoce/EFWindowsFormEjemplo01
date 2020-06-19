@@ -5,6 +5,8 @@ using EFWindowsFormEjemplo01.Entities.DTOs.Profesor;
 using EFWindowsFormEjemplo01.Entities.Entities.Emun;
 using EFWindowsFormEjemplo01.Service.Services;
 using EFWindowsFormEjemplo01.Service.Services.Facades;
+using EFWindowsFormEjemplo01.Windows.Helpers;
+using MetroFramework;
 
 namespace EFWindowsFormEjemplo01.Windows
 {
@@ -15,22 +17,33 @@ namespace EFWindowsFormEjemplo01.Windows
             InitializeComponent();
         }
 
+        private IServicioCurso servicio= new ServicioCursos();
         private CursoEditDto cursoDto;
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            IServicioProfesor servicioProfesor=new ServicioProfesores();
-            var listaProfesores = servicioProfesor.GetProfesores();
-            ProfesorListDto profesorDto = new ProfesorListDto
+            Helper.CargarDatosComboProfesores(ref profesorMetroComboBox);
+            if (cursoDto!=null)
             {
-                ProfesorId = 0,
-                NombreCompleto = "<Seleccione un Profesor>"
-            };
-            listaProfesores.Insert(0,profesorDto);
-            profesorMetroComboBox.DataSource = listaProfesores;
-            profesorMetroComboBox.DisplayMember = "NombreCompleto";
-            profesorMetroComboBox.ValueMember = "ProfesorId";
-            profesorMetroComboBox.SelectedIndex = 0;
+                NombreMetroTextBox.Text = cursoDto.Nombre;
+                DescripcionMetroTextBox.Text = cursoDto.Descripcion;
+                vacantesMetroTextBox.Text = cursoDto.Vacantes.ToString();
+                precioMetroTextBox.Text = cursoDto.PrecioTotal.ToString();
+                switch (cursoDto.Nivel)
+                {
+                    case Nivel.Principiante:
+                        principianteMetroRadioButton.Checked = true;
+                        break;
+                    case Nivel.Medio:
+                        medioMetroRadioButton.Checked = true;
+                        break;
+                    case Nivel.Avanzado:
+                        avanzadoMetroRadioButton.Checked = true;
+                        break;
+                }
+
+                profesorMetroComboBox.SelectedValue = cursoDto.ProfesorListDto.ProfesorId;
+            }
         }
 
         private void CancelarMetroButton_Click(object sender, System.EventArgs e)
@@ -51,21 +64,18 @@ namespace EFWindowsFormEjemplo01.Windows
                 cursoDto.Descripcion = DescripcionMetroTextBox.Text;
                 cursoDto.Nivel = principianteMetroRadioButton.Checked ? Nivel.Principiante :
                     medioMetroRadioButton.Checked ? Nivel.Medio : Nivel.Avanzado;
-                cursoDto.ProfesorId = (int)profesorMetroComboBox.SelectedValue;
+                cursoDto.ProfesorListDto = (ProfesorListDto)profesorMetroComboBox.SelectedItem;
                 cursoDto.Vacantes = int.Parse(vacantesMetroTextBox.Text);
                 cursoDto.PrecioTotal = decimal.Parse(precioMetroTextBox.Text);
-                //TODO:Ver si el curso esta repetido
-                //AlumnoEditDto alumnoEditDto = Mapeador.CrearMapper().Map<AlumnoEditDto>(alumnoEditVm);
-                //if (!servicio.Existe(alumnoEditDto))
-                //{
-                //    DialogResult = DialogResult.OK;
-
-                //}
-                //else
-                //{
-                //    MetroMessageBox.Show(this, "Alumno repetido", "Error", MessageBoxButtons.OK,
-                //        MessageBoxIcon.Error);
-                //}
+                if (!servicio.Existe(cursoDto))
+                {
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MetroMessageBox.Show(this, "Curso repetido", "Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
 
             }
         }
@@ -117,6 +127,16 @@ namespace EFWindowsFormEjemplo01.Windows
 
             return valido;
 
+        }
+
+        public CursoEditDto GetCurso()
+        {
+            return cursoDto;
+        }
+
+        public void SetCurso(CursoEditDto cursoEdit)
+        {
+            cursoDto = cursoEdit;
         }
     }
 }
