@@ -37,7 +37,9 @@
             this.cmnCurso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnAlumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cursoMetroComboBox = new MetroFramework.Controls.MetroComboBox();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.actualizarMetroButton = new MetroFramework.Controls.MetroButton();
             this.mbtNuevo = new MetroFramework.Controls.MetroButton();
             this.mbtCerrar = new MetroFramework.Controls.MetroButton();
             this.cmnBorrar = new System.Windows.Forms.DataGridViewImageColumn();
@@ -109,6 +111,7 @@
             this.mgDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mgDatos.Size = new System.Drawing.Size(1133, 560);
             this.mgDatos.TabIndex = 0;
+            this.mgDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mgDatos_CellContentClick);
             // 
             // cmnCurso
             // 
@@ -130,18 +133,42 @@
             this.cmnFecha.Name = "cmnFecha";
             this.cmnFecha.ReadOnly = true;
             // 
+            // cursoMetroComboBox
+            // 
+            this.cursoMetroComboBox.FormattingEnabled = true;
+            this.cursoMetroComboBox.ItemHeight = 23;
+            this.cursoMetroComboBox.Location = new System.Drawing.Point(245, 25);
+            this.cursoMetroComboBox.Name = "cursoMetroComboBox";
+            this.cursoMetroComboBox.Size = new System.Drawing.Size(634, 29);
+            this.cursoMetroComboBox.TabIndex = 23;
+            this.cursoMetroComboBox.UseSelectable = true;
+            this.cursoMetroComboBox.SelectedIndexChanged += new System.EventHandler(this.cursoMetroComboBox_SelectedIndexChanged);
+            // 
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.HeaderText = "Borrar";
             this.dataGridViewImageColumn1.Image = global::EFWindowsFormEjemplo01.Windows.Properties.Resources.iconfinder_edit_delete_23231;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            // 
+            // actualizarMetroButton
+            // 
+            this.actualizarMetroButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.actualizarMetroButton.BackgroundImage = global::EFWindowsFormEjemplo01.Windows.Properties.Resources.synchronize_48px;
+            this.actualizarMetroButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.actualizarMetroButton.Location = new System.Drawing.Point(944, 10);
+            this.actualizarMetroButton.Name = "actualizarMetroButton";
+            this.actualizarMetroButton.Size = new System.Drawing.Size(64, 48);
+            this.actualizarMetroButton.TabIndex = 7;
+            this.actualizarMetroButton.UseSelectable = true;
+            this.actualizarMetroButton.Click += new System.EventHandler(this.actualizarMetroButton_Click);
             // 
             // mbtNuevo
             // 
             this.mbtNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mbtNuevo.BackgroundImage = global::EFWindowsFormEjemplo01.Windows.Properties.Resources.iconfinder_plus_1646001;
             this.mbtNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.mbtNuevo.Location = new System.Drawing.Point(1014, 13);
+            this.mbtNuevo.Location = new System.Drawing.Point(1014, 9);
             this.mbtNuevo.Name = "mbtNuevo";
             this.mbtNuevo.Size = new System.Drawing.Size(64, 48);
             this.mbtNuevo.TabIndex = 7;
@@ -153,7 +180,7 @@
             this.mbtCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mbtCerrar.BackgroundImage = global::EFWindowsFormEjemplo01.Windows.Properties.Resources.iconfinder_Close_Box_Red_34217;
             this.mbtCerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.mbtCerrar.Location = new System.Drawing.Point(1089, 13);
+            this.mbtCerrar.Location = new System.Drawing.Point(1089, 10);
             this.mbtCerrar.Name = "mbtCerrar";
             this.mbtCerrar.Size = new System.Drawing.Size(64, 48);
             this.mbtCerrar.TabIndex = 6;
@@ -173,11 +200,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1173, 640);
             this.ControlBox = false;
+            this.Controls.Add(this.cursoMetroComboBox);
+            this.Controls.Add(this.actualizarMetroButton);
             this.Controls.Add(this.mbtNuevo);
             this.Controls.Add(this.mbtCerrar);
             this.Controls.Add(this.panel1);
             this.Name = "FrmInscripciones";
-            this.Text = "FrmInscripciones";
+            this.Text = "Inscripciones";
             this.Load += new System.EventHandler(this.FrmInscripciones_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mgDatos)).EndInit();
@@ -196,5 +225,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnFecha;
         private System.Windows.Forms.DataGridViewImageColumn cmnBorrar;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private MetroFramework.Controls.MetroComboBox cursoMetroComboBox;
+        private MetroFramework.Controls.MetroButton actualizarMetroButton;
     }
 }

@@ -129,6 +129,7 @@
       <DependentUpon>FrmProfesores.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Helpers\Tipo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmAlumnoAE.resx">
@@ -231,7 +232,12 @@
   <ItemGroup>
     <None Include="Resources\information_24px.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\synchronize_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\synchronize_48px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

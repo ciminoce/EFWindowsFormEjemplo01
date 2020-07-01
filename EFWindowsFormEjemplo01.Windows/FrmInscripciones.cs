@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
+using EFWindowsFormEjemplo01.Entities.DTOs.Curso;
 using EFWindowsFormEjemplo01.Entities.DTOs.Inscripcion;
 using EFWindowsFormEjemplo01.Entities.Maps;
 using EFWindowsFormEjemplo01.Service.Services;
 using EFWindowsFormEjemplo01.Service.Services.Facades;
+using EFWindowsFormEjemplo01.Windows.Helpers;
 using MetroFramework;
 
 namespace EFWindowsFormEjemplo01.Windows
@@ -27,16 +29,8 @@ namespace EFWindowsFormEjemplo01.Windows
         private void FrmInscripciones_Load(object sender, System.EventArgs e)
         {
             servicio=new ServicioInscripciones();
-            try
-            {
-                lista = servicio.GetInscripciones();
-                MostrarDatosEnGrilla();
-            }
-            catch (Exception ex)
-            {
-                MetroMessageBox.Show(this, ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Helper.CargarDatosComboCursos(ref cursoMetroComboBox);
+            MostrarListaInicial();
         }
 
         private void MostrarDatosEnGrilla()
@@ -87,16 +81,71 @@ namespace EFWindowsFormEjemplo01.Windows
                     DataGridViewRow r = ConstruirFila();
                     SetearFila(r, inscripcionListDto);
                     AgregarFila(r);
-                    MetroMessageBox.Show(this, "Registro Agregado", "Mensaje",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Helper.MostrarMensaje(this, "Registro Agregado",Tipo.Success);
 
                 }
                 catch (Exception ex)
                 {
-                    MetroMessageBox.Show(this, ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Helper.MostrarMensaje(this,ex.Message,Tipo.Error);
 
                 }
+            }
+        }
+        private void mgDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex==3)
+            {
+                DataGridViewRow r = mgDatos.SelectedRows[0];
+                InscripcionListDto inscripcionListDto = (InscripcionListDto) r.Tag;
+                DialogResult dr = Helper.MostrarMensaje(this, "¿Desea dar de baja el registro seleccionado?");
+                if (dr==DialogResult.Yes)
+                {
+                    try
+                    {
+                        servicio.Borrar(inscripcionListDto.InscripcionId);
+                        QuitarFila(r);
+                        Helper.MostrarMensaje(this, "Registro borrado con éxito", Tipo.Success);
+                    }
+                    catch (Exception exception)
+                    {
+                        Helper.MostrarMensaje(this, exception.Message, Tipo.Error);
+                    }
+                }
+            }
+        }
+
+        private void QuitarFila(DataGridViewRow r)
+        {
+            mgDatos.Rows.Remove(r);
+        }
+
+        private void cursoMetroComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cursoMetroComboBox.SelectedIndex>0)
+            {
+                CursoListDto curso = (CursoListDto) cursoMetroComboBox.SelectedItem;
+                lista = servicio.GetInscripciones(curso);
+                MostrarDatosEnGrilla();
+            }
+        }
+
+        private void actualizarMetroButton_Click(object sender, EventArgs e)
+        {
+            cursoMetroComboBox.SelectedIndex = 0;
+            MostrarListaInicial();
+        }
+
+        private void MostrarListaInicial()
+        {
+            try
+            {
+                lista = servicio.GetInscripciones(null);
+                MostrarDatosEnGrilla();
+            }
+            catch (Exception ex)
+            {
+                MetroMessageBox.Show(this, ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
