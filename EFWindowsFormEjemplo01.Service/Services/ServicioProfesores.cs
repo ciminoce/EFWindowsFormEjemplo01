@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EFWindowsFormEjemplo01.Context;
 using EFWindowsFormEjemplo01.Context.Repositories;
 using EFWindowsFormEjemplo01.Context.Repositories.Facades;
 using EFWindowsFormEjemplo01.Entities.DTOs.Profesor;
@@ -11,10 +12,12 @@ namespace EFWindowsFormEjemplo01.Service.Services
     public class ServicioProfesores:IServicioProfesor
     {
         private readonly IRepositorioProfesor _repositorio;
-
+        private readonly IUnitOfWork _unitOfWork;
         public ServicioProfesores()
         {
-            _repositorio = new RepositorioProfesores();
+            var dbContext=new CursosDbContext();
+            _repositorio = new RepositorioProfesores(dbContext);
+            _unitOfWork=new UnitofWork(dbContext);
         }
         public List<ProfesorListDto> GetProfesores()
         {
@@ -24,15 +27,17 @@ namespace EFWindowsFormEjemplo01.Service.Services
 
         public ProfesorEditDto GetProfesorPorId(int id)
         {
-            var alumno = _repositorio.GetProfesorPorId(id);
-            var alumnoEditDto = Mapeador.CrearMapper().Map<ProfesorEditDto>(alumno);
-            return alumnoEditDto;
+            var profesor = _repositorio.GetProfesorPorId(id);
+            var profesorEditDto = Mapeador.CrearMapper().Map<ProfesorEditDto>(profesor);
+            return profesorEditDto;
         }
 
         public void Guardar(ProfesorEditDto profesorEditDto)
         {
-            //var profesor = Mapeador.CrearMapper().Map<Profesor>(profesorEditDto);
-            _repositorio.Guardar(profesorEditDto);
+            var profesor = Mapeador.CrearMapper().Map<ProfesorEditDto, Profesor>(profesorEditDto);
+            _repositorio.Guardar(profesor);
+            _unitOfWork.SaveChanges();
+            profesorEditDto.ProfesorId = profesor.ProfesorId;
         }
 
         public void Borrar(int id)

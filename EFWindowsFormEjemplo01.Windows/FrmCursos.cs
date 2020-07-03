@@ -6,6 +6,7 @@ using EFWindowsFormEjemplo01.Entities.DTOs.Curso;
 using EFWindowsFormEjemplo01.Entities.Maps;
 using EFWindowsFormEjemplo01.Service.Services;
 using EFWindowsFormEjemplo01.Service.Services.Facades;
+using EFWindowsFormEjemplo01.Windows.Helpers;
 using MetroFramework;
 
 namespace EFWindowsFormEjemplo01.Windows
@@ -124,10 +125,10 @@ namespace EFWindowsFormEjemplo01.Windows
                         MessageBoxDefaultButton.Button2);
                     if (dr==DialogResult.Yes)
                     {
-                        CursoEditDto cursoEditDto = Mapeador.CrearMapper().Map<CursoListDto, CursoEditDto>(cursoDto);
-                        if (!servicio.EstaRelacionado(cursoEditDto))
+                        //CursoEditDto cursoEditDto = Mapeador.CrearMapper().Map<CursoListDto, CursoEditDto>(cursoDto);
+                        if (!servicio.EstaRelacionado(cursoDto))
                         {
-                            servicio.Borrar(cursoEditDto.CursoId);
+                            servicio.Borrar(cursoDto.CursoId);
                             MetroMessageBox.Show(this, "Registro Borrado", "Mensaje",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             mgDatos.Rows.Remove(r);
@@ -158,11 +159,19 @@ namespace EFWindowsFormEjemplo01.Windows
                     try
                     {
                         cursoEdit = frm.GetCurso();
-                        servicio.Guardar(cursoEdit);
-                        cursoDto = Mapeador.CrearMapper().Map<CursoEditDto, CursoListDto>(cursoEdit);
-                        SetearFila(r,cursoDto);
-                        MetroMessageBox.Show(this, "Registro Editado", "Mensaje",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (!servicio.Existe(cursoEdit))
+                        {
+                            servicio.Guardar(cursoEdit);
+                            cursoDto = Mapeador.CrearMapper().Map<CursoEditDto, CursoListDto>(cursoEdit);
+                            SetearFila(r, cursoDto);
+                            MetroMessageBox.Show(this, "Registro Editado", "Mensaje",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        else
+                        {
+                            Helper.MostrarMensaje(this, "Registro repetido", Tipo.Error);
+                        }
                     }
                     catch (Exception exception)
                     {
@@ -186,14 +195,22 @@ namespace EFWindowsFormEjemplo01.Windows
                 try
                 {
                     CursoEditDto cursoEditDto = frm.GetCurso();
-                    servicio.Guardar(cursoEditDto);
-                    CursoListDto cursoListDto = Mapeador.CrearMapper()
-                        .Map<CursoEditDto, CursoListDto>(cursoEditDto);
-                    DataGridViewRow r = ConstruirFila();
-                    SetearFila(r,cursoListDto);
-                    AgregarFila(r);
-                    MetroMessageBox.Show(this, "Registro Agregado", "Mensaje", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                    if (!servicio.Existe(cursoEditDto))
+                    {
+                        servicio.Guardar(cursoEditDto);
+                        CursoListDto cursoListDto = Mapeador.CrearMapper()
+                            .Map<CursoEditDto, CursoListDto>(cursoEditDto);
+                        DataGridViewRow r = ConstruirFila();
+                        SetearFila(r, cursoListDto);
+                        AgregarFila(r);
+                        MetroMessageBox.Show(this, "Registro Agregado", "Mensaje", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+                    }
+                    else
+                    {
+                        Helper.MostrarMensaje(this, "Registro repetido", Tipo.Error);
+                    }
                 }
                 catch (Exception exception)
                 {

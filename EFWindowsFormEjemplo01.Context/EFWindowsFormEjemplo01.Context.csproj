@@ -59,6 +59,7 @@
     <Compile Include="EntityTypeConfigurations\CursoEntityTypeConfigurations.cs" />
     <Compile Include="EntityTypeConfigurations\InscripcionEntityTypeConfigurations.cs" />
     <Compile Include="EntityTypeConfigurations\ProfesorEntityTypeConfigurations.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Facades\IRepositorioAlumno.cs" />
     <Compile Include="Repositories\Facades\IRepositorioCurso.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Repositories\RepositorioCursos.cs" />
     <Compile Include="Repositories\RepositorioInscripciones.cs" />
     <Compile Include="Repositories\RepositorioProfesores.cs" />
+    <Compile Include="UnitofWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

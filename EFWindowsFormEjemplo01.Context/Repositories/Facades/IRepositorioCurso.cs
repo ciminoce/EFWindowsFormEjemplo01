@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using EFWindowsFormEjemplo01.Entities.DTOs.Curso;
+using EFWindowsFormEjemplo01.Entities.Entities;
 
 namespace EFWindowsFormEjemplo01.Context.Repositories.Facades
 {
@@ -9,10 +10,10 @@ namespace EFWindowsFormEjemplo01.Context.Repositories.Facades
 
         CursoMasInfoDto GetMasDatos(int id);
         CursoEditDto GetCursoPorId(int id);
-        void Guardar(CursoEditDto curso);
+        void Guardar(Curso curso);
         void Borrar(int id);
         bool Existe(CursoEditDto curso);
-        bool EstaRelacionado(CursoEditDto curso);
+        bool EstaRelacionado(CursoListDto curso);
 
     }
 }

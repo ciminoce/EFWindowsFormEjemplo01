@@ -13,10 +13,15 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
     {
         private readonly CursosDbContext _dbContext;
 
-        public RepositorioAlumnos()
+        public RepositorioAlumnos(CursosDbContext dbContext)
         {
-            _dbContext=new CursosDbContext();
+            _dbContext = dbContext;
         }
+
+        //public RepositorioAlumnos()
+        //{
+        //    _dbContext=new CursosDbContext();
+        //}
 
         public List<AlumnoListDto> GetAlumnos()
         {
@@ -32,9 +37,8 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
 
         }
 
-        public void Guardar(AlumnoEditDto alumnoEditDto)
+        public void Guardar(Alumno alumno)
         {
-            var alumno = Mapeador.CrearMapper().Map<AlumnoEditDto, Alumno>(alumnoEditDto);
             if (alumno.AlumnoId==0)
             {
                 _dbContext.Alumnos.Add(alumno);
@@ -48,10 +52,12 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
                     alumnoInDb.Apellido = alumno.Apellido;
                     _dbContext.Entry(alumnoInDb).State = EntityState.Modified;
                 }
+                //_dbContext.Entry(alumno).State = EntityState.Added;
+                //_dbContext.Entry(alumno).State = EntityState.Modified;
             }
 
-            _dbContext.SaveChanges();
-            alumnoEditDto.AlumnoId = alumno.AlumnoId;
+            //_dbContext.SaveChanges();
+            //alumnoEditDto.AlumnoId = alumno.AlumnoId;
         }
 
         public void Borrar(int id)
@@ -60,7 +66,7 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
             if (alumnoInDb!=null)
             {
                 _dbContext.Entry(alumnoInDb).State = EntityState.Deleted;
-                _dbContext.SaveChanges();
+                //_dbContext.SaveChanges();
             }
             else
             {
@@ -84,10 +90,11 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
                                                && a.Apellido == alumno.Apellido);
         }
 
-        public bool EstaRelacionado(Alumno alumno)
+        public bool EstaRelacionado(AlumnoListDto alumno)
         {
             //TODO:Desarrollar cuando se haya hecho la parte de inscripciones
-            return false;
+
+            return _dbContext.Inscripciones.Any(i=>i.AlumnoId==alumno.AlumnoId);
         }
     }
 }

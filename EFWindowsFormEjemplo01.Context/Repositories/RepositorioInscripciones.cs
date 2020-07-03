@@ -14,10 +14,14 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
     {
         private readonly CursosDbContext _dbContext;
 
-        public RepositorioInscripciones()
+        public RepositorioInscripciones(CursosDbContext dbContext)
         {
-            _dbContext = new CursosDbContext();
+            _dbContext = dbContext;
         }
+        //public RepositorioInscripciones()
+        //{
+        //    _dbContext = new CursosDbContext();
+        //}
         public List<InscripcionListDto> GetInscripciones(CursoListDto curso=null)
         {
             try

@@ -12,10 +12,14 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
     {
         private readonly CursosDbContext _dbContext;
 
-        public RepositorioCursos()
+        public RepositorioCursos(CursosDbContext dbContext)
         {
-            _dbContext=new CursosDbContext();
+            _dbContext = dbContext;
         }
+        //public RepositorioCursos()
+        //{
+        //    _dbContext=new CursosDbContext();
+        //}
         public List<CursoListDto> GetCursos()
         {
             //var listaCursos = _dbContext.Cursos.Include(c => c.Profesor).ToList();
@@ -46,9 +50,8 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
             return Mapeador.CrearMapper().Map<Curso, CursoEditDto>(curso);
         }
 
-        public void Guardar(CursoEditDto cursoDto)
+        public void Guardar(Curso curso)
         {
-            var curso = Mapeador.CrearMapper().Map<CursoEditDto, Curso>(cursoDto);
             if (curso.CursoId==0)
             {
                 _dbContext.Cursos.Add(curso);
@@ -68,7 +71,7 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
                 }
             }
 
-            _dbContext.SaveChanges();
+            //_dbContext.SaveChanges();
         }
 
         public void Borrar(int id)
@@ -77,7 +80,7 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
             if (cursoInDb!=null)
             {
                 _dbContext.Entry(cursoInDb).State = EntityState.Deleted;
-                _dbContext.SaveChanges();
+                //_dbContext.SaveChanges();
             }
         }
 
@@ -91,9 +94,9 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
             return _dbContext.Cursos.Any(c => c.Nombre == curso.Nombre && c.CursoId != curso.CursoId);
         }
 
-        public bool EstaRelacionado(CursoEditDto curso)
+        public bool EstaRelacionado(CursoListDto curso)
         {
-            return false;
+            return _dbContext.Inscripciones.Any(i=>i.CursoId==curso.CursoId);
         }
     }
 }

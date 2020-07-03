@@ -8,10 +8,10 @@ namespace EFWindowsFormEjemplo01.Context.Repositories.Facades
     {
         List<AlumnoListDto> GetAlumnos();
         AlumnoEditDto GetAlumnoPorId(int id);
-        void Guardar(AlumnoEditDto alumno);
+        void Guardar(Alumno alumno);
         void Borrar(int id);
         bool Existe(AlumnoEditDto alumno);
-        bool EstaRelacionado(Alumno alumno);
+        bool EstaRelacionado(AlumnoListDto alumno);
 
     }
 }

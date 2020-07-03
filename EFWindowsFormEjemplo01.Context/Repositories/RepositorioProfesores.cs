@@ -13,10 +13,14 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
     {
         private readonly CursosDbContext _dbContext;
 
-        public RepositorioProfesores()
+        public RepositorioProfesores(CursosDbContext dbContext)
         {
-            _dbContext = new CursosDbContext();
+            _dbContext = dbContext;
         }
+        //public RepositorioProfesores()
+        //{
+        //    _dbContext = new CursosDbContext();
+        //}
 
         public List<ProfesorListDto> GetProfesores()
         {
@@ -35,9 +39,8 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
 
         }
 
-        public void Guardar(ProfesorEditDto profesorDto)
+        public void Guardar(Profesor profesor)
         {
-            var profesor = Mapeador.CrearMapper().Map<ProfesorEditDto, Profesor>(profesorDto);
             if (profesor.ProfesorId == 0)
             {
                 _dbContext.Profesores.Add(profesor);
@@ -53,8 +56,8 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
                 }
             }
 
-            _dbContext.SaveChanges();
-            profesorDto.ProfesorId = profesor.ProfesorId;
+            //_dbContext.SaveChanges();
+            //profesorDto.ProfesorId = profesor.ProfesorId;
         }
 
         public void Borrar(int id)
@@ -63,7 +66,7 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
             if (profesorInBd != null)
             {
                 _dbContext.Entry(profesorInBd).State = EntityState.Deleted;
-                _dbContext.SaveChanges();
+                //_dbContext.SaveChanges();
             }
             else
             {
@@ -85,10 +88,10 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
                                                && a.Apellido == profesor.Apellido);
         }
 
-        public bool EstaRelacionado(Profesor profesor)
+        public bool EstaRelacionado(ProfesorListDto profesor)
         {
-            //TODO:Desarrollar cuando se haya hecho la parte de inscripciones
-            return false;
+
+            return _dbContext.Cursos.Any(c=>c.ProfesorId==profesor.ProfesorId);
         }
     }
 }

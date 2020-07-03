@@ -9,10 +9,10 @@ namespace EFWindowsFormEjemplo01.Context.Repositories.Facades
     {
         List<ProfesorListDto> GetProfesores();
         ProfesorEditDto GetProfesorPorId(int id);
-        void Guardar(ProfesorEditDto profesor);
+        void Guardar(Profesor profesor);
         void Borrar(int id);
         bool Existe(ProfesorEditDto profesor);
-        bool EstaRelacionado(Profesor profesor);
+        bool EstaRelacionado(ProfesorListDto profesor);
 
     }
 }

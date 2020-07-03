@@ -5,6 +5,7 @@ using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
 using EFWindowsFormEjemplo01.Entities.Maps;
 using EFWindowsFormEjemplo01.Service.Services;
 using EFWindowsFormEjemplo01.Service.Services.Facades;
+using EFWindowsFormEjemplo01.Windows.Helpers;
 using MetroFramework;
 
 namespace EFWindowsFormEjemplo01.Windows
@@ -113,7 +114,12 @@ namespace EFWindowsFormEjemplo01.Windows
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
 
-                        }                    }
+                        }
+                        else
+                        {
+                            Helper.MostrarMensaje(this, "Registro relacionado", Tipo.Error);
+                        }
+                    }
                     catch (Exception exception)
                     {
                         MetroMessageBox.Show(this, exception.Message,
@@ -135,11 +141,21 @@ namespace EFWindowsFormEjemplo01.Windows
                     try
                     {
                         alumnoEditDto = frm.GetAlumno();
-                        servicio.Guardar(alumnoEditDto);
-                        alumnoListDto = Mapeador.CrearMapper().Map<AlumnoListDto>(alumnoEditDto);
-                        SetearFila(r,alumnoListDto);
-                        MetroMessageBox.Show(this, "Registro Editado", "Mensaje",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        if (!servicio.Existe(alumnoEditDto))
+                        {
+                            servicio.Guardar(alumnoEditDto);
+                            alumnoListDto = Mapeador.CrearMapper().Map<AlumnoListDto>(alumnoEditDto);
+                            SetearFila(r, alumnoListDto);
+                            MetroMessageBox.Show(this, "Registro Editado", "Mensaje",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        else
+                        {
+                            Helper.MostrarMensaje(this, "Registro repetido", Tipo.Error);
+
+                        }
                     }
                     catch (Exception exception)
                     {

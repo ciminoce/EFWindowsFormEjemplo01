@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EFWindowsFormEjemplo01.Context;
 using EFWindowsFormEjemplo01.Context.Repositories;
 using EFWindowsFormEjemplo01.Context.Repositories.Facades;
 using EFWindowsFormEjemplo01.Entities.DTOs.Curso;
@@ -10,10 +11,14 @@ namespace EFWindowsFormEjemplo01.Service.Services
     public class ServicioInscripciones:IServicioInscripcion
     {
         private readonly IRepositorioInscripcion _repositorio;
+        private IUnitOfWork _unitOfWork;
+
 
         public ServicioInscripciones()
         {
-            _repositorio = new RepositorioInscripciones();
+            var dbContext=new CursosDbContext();
+            _repositorio = new RepositorioInscripciones(dbContext);
+            _unitOfWork=new UnitofWork(dbContext);
         }
         public List<InscripcionListDto> GetInscripciones(CursoListDto curso)
         {

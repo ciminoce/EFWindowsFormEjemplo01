@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EFWindowsFormEjemplo01.Context;
 using EFWindowsFormEjemplo01.Context.Repositories;
 using EFWindowsFormEjemplo01.Context.Repositories.Facades;
 using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
@@ -11,10 +12,15 @@ namespace EFWindowsFormEjemplo01.Service.Services
     public class ServicioAlumnos:IServicioAlumno
     {
         private readonly IRepositorioAlumno _repositorio;
+        private IUnitOfWork _unitOfWork;
+       
 
         public ServicioAlumnos()
         {
-            _repositorio=new RepositorioAlumnos();
+            var dbContext=new CursosDbContext();
+
+            _repositorio=new RepositorioAlumnos(dbContext);
+            _unitOfWork=new UnitofWork(dbContext);
         }
         public List<AlumnoListDto> GetAlumnos()
         {
@@ -30,13 +36,17 @@ namespace EFWindowsFormEjemplo01.Service.Services
 
         public void Guardar(AlumnoEditDto alumnoEditDto)
         {
-            //var alumno = Mapeador.CrearMapper().Map<Alumno>(alumnoEditDto);
-            _repositorio.Guardar(alumnoEditDto);
+            var alumno = Mapeador.CrearMapper().Map<AlumnoEditDto, Alumno>(alumnoEditDto);
+            _repositorio.Guardar(alumno);
+            _unitOfWork.SaveChanges();
+            alumnoEditDto.AlumnoId = alumno.AlumnoId;
         }
 
         public void Borrar(int id)
         {
+
             _repositorio.Borrar(id);
+            _unitOfWork.SaveChanges();
         }
 
         public bool Existe(AlumnoEditDto alumnoEditDto)
@@ -47,8 +57,8 @@ namespace EFWindowsFormEjemplo01.Service.Services
 
         public bool EstaRelacionado(AlumnoListDto alumnoListDto)
         {
-            Alumno alumno = Mapeador.CrearMapper().Map<Alumno>(alumnoListDto);
-            return _repositorio.EstaRelacionado(alumno);
+            //Alumno alumno = Mapeador.CrearMapper().Map<Alumno>(alumnoListDto);
+            return _repositorio.EstaRelacionado(alumnoListDto);
         }
     }
 }

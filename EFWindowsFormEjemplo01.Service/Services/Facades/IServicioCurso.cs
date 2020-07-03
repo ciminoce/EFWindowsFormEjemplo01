@@ -11,7 +11,7 @@ namespace EFWindowsFormEjemplo01.Service.Services.Facades
         void Guardar(CursoEditDto curso);
         void Borrar(int id);
         bool Existe(CursoEditDto curso);
-        bool EstaRelacionado(CursoEditDto curso);
+        bool EstaRelacionado(CursoListDto curso);
 
     }
 }
