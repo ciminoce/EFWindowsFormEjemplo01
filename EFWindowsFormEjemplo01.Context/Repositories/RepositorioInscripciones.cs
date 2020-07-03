@@ -57,32 +57,9 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
                                                      && i.InscripcionId != inscripcionDto.InscripcionId);
         }
 
-        public void Guardar(InscripcionEditDto inscripcionEditDto)
+        public void Guardar(Inscripcion inscripcion)
         {
-            var inscripcion = Mapeador.CrearMapper().Map<InscripcionEditDto, Inscripcion>(inscripcionEditDto);
-            using (var transancion = _dbContext.Database.BeginTransaction())
-            {
-                try
-                {
-                    _dbContext.Inscripciones.Add(inscripcion);
-
-                    var curso = _dbContext.Cursos.SingleOrDefault(c => c.CursoId == inscripcion.CursoId);
-                    if (curso != null)
-                    {
-                        curso.Vacantes--;
-                        _dbContext.Entry(curso).State = EntityState.Modified;
-                    }
-
-                    _dbContext.SaveChanges();
-                    transancion.Commit();
-
-                }
-                catch (Exception ex)
-                {
-                    transancion.Rollback();
-                    throw new Exception(ex.Message);
-                }
-            }
+            _dbContext.Inscripciones.Add(inscripcion);
         }
 
         public void Borrar(int inscripcionId)
@@ -117,6 +94,12 @@ namespace EFWindowsFormEjemplo01.Context.Repositories
                 }
 
             }
+        }
+
+        public InscripcionEditDto GetInscripcionPorId(int id)
+        {
+            var inscripcion= _dbContext.Inscripciones.SingleOrDefault(i => i.InscripcionId == id);
+            return Mapeador.CrearMapper().Map<Inscripcion,InscripcionEditDto>(inscripcion);
         }
     }
 }
