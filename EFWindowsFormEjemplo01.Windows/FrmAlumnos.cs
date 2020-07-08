@@ -6,40 +6,42 @@ using EFWindowsFormEjemplo01.Entities.Maps;
 using EFWindowsFormEjemplo01.Service.Services;
 using EFWindowsFormEjemplo01.Service.Services.Facades;
 using EFWindowsFormEjemplo01.Windows.Helpers;
+using EFWindowsFormEjemplo01.Windows.Ninject;
 using MetroFramework;
 
 namespace EFWindowsFormEjemplo01.Windows
 {
     public partial class FrmAlumnos : MetroFramework.Forms.MetroForm
     {
-        private static FrmAlumnos _instancia = null;
+        //private static FrmAlumnos _instancia = null;
 
-        public static FrmAlumnos GetInstancia()
-        {
-            if (_instancia==null)
-            {
-                _instancia=new FrmAlumnos();
-                _instancia.FormClosed += form_Close;
-            }
+        //public static FrmAlumnos GetInstancia()
+        //{
+        //    if (_instancia==null)
+        //    {
+        //        _instancia=new FrmAlumnos();
+        //        _instancia.FormClosed += form_Close;
+        //    }
 
-            return _instancia;
-        }
+        //    return _instancia;
+        //}
 
-        private static void form_Close(object sender, FormClosedEventArgs e)
-        {
-            _instancia = null;
-        }
+        //private static void form_Close(object sender, FormClosedEventArgs e)
+        //{
+        //    _instancia = null;
+        //}
 
-        private FrmAlumnos()
+        public FrmAlumnos(IServicioAlumno servicio)
         {
             InitializeComponent();
+            this.servicio = servicio;
         }
 
-        private IServicioAlumno servicio;
+        private readonly IServicioAlumno servicio;
         private List<AlumnoListDto> lista;
         private void FrmAlumnos_Load(object sender, EventArgs e)
         {
-            servicio=new ServicioAlumnos();
+            //servicio=new ServicioAlumnos();
             this.Dock = DockStyle.Fill;
             try
             {
@@ -132,7 +134,7 @@ namespace EFWindowsFormEjemplo01.Windows
             }else if (e.ColumnIndex==2)
             {
                 AlumnoEditDto alumnoEditDto = servicio.GetAlumnoPorId(alumnoListDto.AlumnoId);
-                FrmAlumnoAE frm=new FrmAlumnoAE();
+                FrmAlumnoAE frm=DI.Create<FrmAlumnoAE>();
                 frm.Text = "Editar Alumno";
                 frm.SetAlumno(alumnoEditDto);
                 DialogResult dr = frm.ShowDialog(this);
@@ -169,7 +171,7 @@ namespace EFWindowsFormEjemplo01.Windows
 
         private void mbtNuevo_Click(object sender, EventArgs e)
         {
-            FrmAlumnoAE frm=new FrmAlumnoAE();
+            FrmAlumnoAE frm=DI.Create<FrmAlumnoAE>();
             frm.Text = "Nuevo alumno...";
             DialogResult dr = frm.ShowDialog(this);
             if (dr==DialogResult.OK)

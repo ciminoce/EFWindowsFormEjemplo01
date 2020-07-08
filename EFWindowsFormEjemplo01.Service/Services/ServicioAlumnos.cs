@@ -11,17 +11,23 @@ namespace EFWindowsFormEjemplo01.Service.Services
 {
     public class ServicioAlumnos:IServicioAlumno
     {
+        private CursosDbContext _dbContext;
         private readonly IRepositorioAlumno _repositorio;
-        private IUnitOfWork _unitOfWork;
-       
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ServicioAlumnos()
+        public ServicioAlumnos(CursosDbContext dbContext, IRepositorioAlumno repositorio, IUnitOfWork unitOfWork)
         {
-            var dbContext=new CursosDbContext();
-
-            _repositorio=new RepositorioAlumnos(dbContext);
-            _unitOfWork=new UnitofWork(dbContext);
+            _dbContext = dbContext;
+            _repositorio = repositorio;
+            _unitOfWork = unitOfWork;
         }
+        //public ServicioAlumnos()
+        //{
+        //    var dbContext=new CursosDbContext();
+
+        //    _repositorio=new RepositorioAlumnos(dbContext);
+        //    _unitOfWork=new UnitofWork(dbContext);
+        //}
         public List<AlumnoListDto> GetAlumnos()
         {
             return _repositorio.GetAlumnos();

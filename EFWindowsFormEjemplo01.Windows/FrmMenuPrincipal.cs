@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using EFWindowsFormEjemplo01.Windows.Ninject;
 
 namespace EFWindowsFormEjemplo01.Windows
 {
@@ -17,9 +18,9 @@ namespace EFWindowsFormEjemplo01.Windows
 
         private void alumnosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmAlumnos frm=FrmAlumnos.GetInstancia();
-            frm.MdiParent = this;
-            frm.Show();
+            //FrmAlumnos frm=FrmAlumnos.GetInstancia();
+            //frm.MdiParent = this;
+            //frm.Show();
         }
 
         private void mtSalir_Click(object sender, EventArgs e)
@@ -29,7 +30,7 @@ namespace EFWindowsFormEjemplo01.Windows
 
         private void mtAlumnos_Click(object sender, EventArgs e)
         {
-            FrmAlumnos frm = FrmAlumnos.GetInstancia();
+            FrmAlumnos frm = DI.Create<FrmAlumnos>();
             frm.ShowDialog(this);
 
         }

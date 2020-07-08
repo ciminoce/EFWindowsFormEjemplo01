@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Windows.Forms;
 using EFWindowsFormEjemplo01.Entities.DTOs.Alumno;
-using EFWindowsFormEjemplo01.Service.Services;
+using EFWindowsFormEjemplo01.Service.Services.Facades;
 using MetroFramework;
 
 namespace EFWindowsFormEjemplo01.Windows
 {
     public partial class FrmAlumnoAE : MetroFramework.Forms.MetroForm
     {
-        public FrmAlumnoAE()
+        public FrmAlumnoAE(IServicioAlumno servicio)
         {
             InitializeComponent();
+            this.servicio = servicio;
         }
 
         private void CancelarMetroButton_Click(object sender, System.EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
-        private ServicioAlumnos servicio = new ServicioAlumnos();
+        //private ServicioAlumnos servicio = new ServicioAlumnos();
+        private IServicioAlumno servicio;
+
         private AlumnoEditDto alumnoEditDto;
         protected override void OnLoad(EventArgs e)
         {

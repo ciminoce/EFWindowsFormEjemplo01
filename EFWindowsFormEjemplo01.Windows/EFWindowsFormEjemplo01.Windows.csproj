@@ -54,6 +54,9 @@
     <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -130,6 +133,8 @@
     </Compile>
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Helpers\Tipo.cs" />
+    <Compile Include="Ninject\Bindings.cs" />
+    <Compile Include="Ninject\DI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmAlumnoAE.resx">
@@ -187,6 +192,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EFWindowsFormEjemplo01.Context\EFWindowsFormEjemplo01.Context.csproj">
+      <Project>{ca88e8bb-0372-4d5f-bc5d-820e7a283131}</Project>
+      <Name>EFWindowsFormEjemplo01.Context</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EFWindowsFormEjemplo01.Entities\EFWindowsFormEjemplo01.Entities.csproj">
       <Project>{b576150c-b47a-44be-a91c-68e6a1527270}</Project>
       <Name>EFWindowsFormEjemplo01.Entities</Name>
@@ -238,6 +247,7 @@
   <ItemGroup>
     <None Include="Resources\synchronize_48px.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

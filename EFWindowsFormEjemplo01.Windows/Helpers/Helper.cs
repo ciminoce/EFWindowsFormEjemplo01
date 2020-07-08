@@ -5,6 +5,7 @@ using EFWindowsFormEjemplo01.Entities.DTOs.Curso;
 using EFWindowsFormEjemplo01.Entities.DTOs.Profesor;
 using EFWindowsFormEjemplo01.Service.Services;
 using EFWindowsFormEjemplo01.Service.Services.Facades;
+using EFWindowsFormEjemplo01.Windows.Ninject;
 using MetroFramework;
 using MetroFramework.Controls;
 
@@ -47,7 +48,7 @@ namespace EFWindowsFormEjemplo01.Windows.Helpers
 
         public static void CargarDatosComboAlumnos(ref MetroComboBox cbo)
         {
-            IServicioAlumno servicio = new ServicioAlumnos();
+            IServicioAlumno servicio = DI.Create<IServicioAlumno>();
             var lista = servicio.GetAlumnos();
             AlumnoListDto alumnoDto = new AlumnoListDto
             {
